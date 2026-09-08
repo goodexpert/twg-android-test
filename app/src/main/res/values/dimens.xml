@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="recyclerview_out_rec_top">6dp</dimen>
+
+</resources>
