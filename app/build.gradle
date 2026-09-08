@@ -1,5 +1,22 @@
 apply plugin: 'com.android.application'
 
+// Azure APIM subscription key. Resolved from local.properties (developer machines,
+// gitignored) first, then the environment (CI). Never hardcode it in source.
+def resolveSubscriptionKey() {
+    def props = new Properties()
+    def propsFile = rootProject.file('local.properties')
+    if (propsFile.exists()) {
+        propsFile.withInputStream { props.load(it) }
+    }
+    def key = props.getProperty('twg.subscriptionKey') ?: System.getenv('TWG_SUBSCRIPTION_KEY')
+    if (key == null || key.trim().isEmpty()) {
+        logger.warn('WARNING: twg.subscriptionKey is not set in local.properties and ' +
+                'TWG_SUBSCRIPTION_KEY is not in the environment. API calls will fail with 401.')
+        return ''
+    }
+    return key.trim()
+}
+
 android {
     namespace 'nz.co.warehouseandroidtest'
     compileSdk 35
@@ -11,6 +28,10 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField 'String', 'SUBSCRIPTION_KEY', "\"${resolveSubscriptionKey()}\""
+    }
+    buildFeatures {
+        buildConfig true
     }
     buildTypes {
         release {
