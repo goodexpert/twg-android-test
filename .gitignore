@@ -46,6 +46,10 @@ CLAUDE.md
 .env.development.local
 .env.production.local
 
+# PR screenshots — uploaded via `gh --attach`, never committed.
+# Naming: <ticket>.<platform>[.<screen>].<before|after>.<ext>
+screenshots/
+
 # Xcode
 xcuserdata/
 *.xcuserstate
