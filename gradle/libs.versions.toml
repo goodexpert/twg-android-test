@@ -8,6 +8,12 @@ targetSdk = "35"
 kotlin = "2.4.20"
 composeMultiplatform = "1.12.0"
 androidxActivityCompose = "1.13.0"
+kotlinxSerialization = "1.11.0"
+kotlinxCoroutines = "1.11.0"
+ktor = "3.5.2"
+multiplatformSettings = "1.3.0"
+# Backs the Android side of the session store with EncryptedSharedPreferences.
+androidxSecurityCrypto = "1.1.0"
 
 # Legacy pre-AndroidX support library. Replaced during the KMP/CMP migration.
 supportLibrary = "28.0.0"
@@ -46,7 +52,20 @@ glide-transformations = { module = "jp.wasabeef:glide-transformations", version.
 zxing-library = { module = "cn.yipianfengye.android:zxing-library", version.ref = "zxing" }
 
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivityCompose" }
+androidx-security-crypto = { module = "androidx.security:security-crypto", version.ref = "androidxSecurityCrypto" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerialization" }
+multiplatform-settings = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatformSettings" }
+multiplatform-settings-test = { module = "com.russhwolf:multiplatform-settings-test", version.ref = "multiplatformSettings" }
+
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutines" }
+
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
+ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 
 junit = { module = "junit:junit", version.ref = "junit" }
 support-test-runner = { module = "com.android.support.test:runner", version.ref = "supportTestRunner" }
@@ -57,3 +76,4 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
