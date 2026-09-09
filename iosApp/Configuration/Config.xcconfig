@@ -1,0 +1,13 @@
+// Shared build settings for the iosApp target. Committed.
+//
+// Signing identity is deliberately absent here. Selecting a team in Xcode or in Android
+// Studio's KMP plugin writes DEVELOPMENT_TEAM straight into project.pbxproj, which dirties
+// a tracked file on every developer's machine. Keeping the value in an untracked
+// Local.xcconfig avoids that.
+
+BUNDLE_ID = nz.co.warehouseandroidtest.kmp
+
+// Per-developer overrides, chiefly TEAM_ID. The `?` makes the include optional, so a fresh
+// clone without this file still configures: TEAM_ID resolves empty, and simulator builds
+// need no signing team. Create it only if you build to a physical device.
+#include? "Local.xcconfig"
