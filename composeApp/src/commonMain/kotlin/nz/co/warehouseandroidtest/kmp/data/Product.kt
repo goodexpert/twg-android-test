@@ -29,6 +29,11 @@ data class Product(
     val secondaryCategoryIds: List<String> = emptyList(),
     val priceInfo: PriceInfo? = null,
     val imageUrls: List<String> = emptyList(),
+    /**
+     * The single hero image the search endpoint sends alongside [imageGroups] — one URL rather
+     * than a per-colour gallery, which is what the card thumbnail actually wants.
+     */
+    val productImageUrl: String? = null,
     /** The same pictures grouped by colour variant. See [ImageGroup] on how the two differ. */
     val imageGroups: List<ImageGroup> = emptyList(),
     val promotions: List<Promotion> = emptyList(),

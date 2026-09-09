@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Shared copy for both platforms. Compose Multiplatform generates a `Res.string` accessor per
+  entry, so iOS reads these too - unlike src/androidMain/res/values/strings.xml, which only
+  Android sees and which holds the launcher label.
+
+  %1$s in the error messages is the screen's own name, passed by the screen.
+-->
+<resources>
+    <string name="error_connection_title">Connection Error</string>
+    <string name="error_connection_message">Unable to load %1$s due to a connection error</string>
+
+    <string name="error_server_title">Something Went Wrong</string>
+    <string name="error_server_message">%1$s could not be loaded right now. Please try again shortly.</string>
+
+    <string name="error_not_found_title">Not Found</string>
+    <string name="error_not_found_message">We could not find %1$s.</string>
+
+    <string name="error_unknown_title">Something Went Wrong</string>
+    <string name="error_unknown_message">Unable to load %1$s.</string>
+
+    <string name="action_try_again">Try Again</string>
+
+    <string name="search_title">Search</string>
+</resources>

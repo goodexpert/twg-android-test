@@ -1,6 +1,7 @@
 package nz.co.warehouseandroidtest.kmp
 
 import io.ktor.client.HttpClient
+import nz.co.warehouseandroidtest.kmp.feature.productlist.ProductListPreferencesStore
 import nz.co.warehouseandroidtest.kmp.network.KtorWarehouseApi
 import nz.co.warehouseandroidtest.kmp.network.WarehouseApi
 import nz.co.warehouseandroidtest.kmp.network.createWarehouseHttpClient
@@ -55,7 +56,13 @@ class AppContainer {
         RecentSearchStore(createSettings(RECENT_SEARCHES_STORE))
     }
 
+    /** Product-list screen preferences (layout today, sort/filters later). */
+    val productListPreferencesStore: ProductListPreferencesStore by lazy {
+        ProductListPreferencesStore(createSettings(PRODUCT_LIST_PREFS_STORE))
+    }
+
     private companion object {
         const val RECENT_SEARCHES_STORE = "warehouse_recent_searches"
+        const val PRODUCT_LIST_PREFS_STORE = "warehouse_product_list_prefs"
     }
 }
