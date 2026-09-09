@@ -10,6 +10,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-        setContent { App() }
+
+        // Read from the Application rather than built here: a new container per Activity would
+        // mean a new HttpClient on every configuration change.
+        val container = (application as WarehouseApplication).container
+        setContent { App(container) }
     }
 }
