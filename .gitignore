@@ -50,6 +50,11 @@ CLAUDE.md
 # Naming: <ticket>.<platform>[.<screen>].<before|after>.<ext>
 screenshots/
 
+# Per-developer Xcode signing settings. Config.xcconfig pulls this in with an optional
+# `#include?`, so a clone without it still builds — TEAM_ID just resolves empty, which is
+# all a simulator build needs.
+iosApp/Configuration/Local.xcconfig
+
 # Xcode
 xcuserdata/
 *.xcuserstate
