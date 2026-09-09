@@ -1,0 +1,17 @@
+{
+  "customerId": "cust-123",
+  "preferredBranchIds": [],
+  "eReceiptsPreferred": false,
+  "isTeamMember": false,
+  "isStaff": false,
+  "masterEmailOptIn": false,
+  "expiresDatetime": "2026-09-09T06:29:07Z",
+  "expiryMinutes": 30,
+  "guest": true,
+  "platformDemandWare": "QAT",
+  "environment": "Azure QAT",
+  "developmentPlatform": true,
+  "somethingTheModelDoesNotDeclare": "ignored",
+  "apiVersion": 1.0,
+  "requestedApiVersion": 4.6
+}

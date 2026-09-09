@@ -1,0 +1,255 @@
+{
+  "product": {
+    "isMaster": false,
+    "onSpecial": false,
+    "imageUrls": [
+      "https://thewarehouse-beta.office-supplies.co.nz/on/demandware.static/-/Sites-twl-master-catalog/default/dw96df35f3/images/hi-res/96/C7/R2436546_40.jpg"
+    ],
+    "productName": "Reflex Premium Copy Paper 80gsm 500 Sheet Ream A4",
+    "priceInfo": {
+      "price": 9.99
+    },
+    "productKey": 2436546,
+    "inventory": {
+      "available": true,
+      "preorderable": false,
+      "backorderable": false,
+      "soh": 408
+    },
+    "productBarcode": "9311995048689",
+    "promotions": [
+      {
+        "promotionId": "marketclub-sandbox-5off",
+        "dealDescription": "5% off your order. Download our app and join MarketClub. This is the callout",
+        "demandwareConditionsText": "This is the extra detail",
+        "price": 9.99,
+        "isMarketClubExclusive": false,
+        "description": "5% off your order. Download our app and join MarketClub",
+        "tags": [
+          "ExcludeFromRefinement"
+        ]
+      },
+      {
+        "promotionId": "easter-2024-game-sitewide-8-IncludeOnline",
+        "dealDescription": "Get $8 off when you spend $80 on a huge range sitewide",
+        "isMarketClubExclusive": false,
+        "description": "Get $8 off when you spend $80 on a huge range sitewide",
+        "tags": [
+          "ExcludeFromRefinement"
+        ]
+      },
+      {
+        "promotionId": "easter-2024-game-sitewide-8-excludeStoreOnlineCombo",
+        "dealDescription": "Get $8 off when you spend $80 on a huge range sitewide",
+        "isMarketClubExclusive": false,
+        "description": "Get $8 off when you spend $80 on a huge range sitewide",
+        "tags": [
+          "ExcludeFromRefinement"
+        ]
+      },
+      {
+        "promotionId": "twl-containsOnline-Promo",
+        "dealDescription": "Can order online (if stock)",
+        "isMarketClubExclusive": false,
+        "description": "Contains Online Products Promo",
+        "tags": [
+          "ExcludeFromRefinement"
+        ]
+      },
+      {
+        "promotionId": "twl-omni-Promo",
+        "dealDescription": "Omni Products",
+        "isMarketClubExclusive": false,
+        "description": "Omni Products Promo",
+        "tags": [
+          "ExcludeFromRefinement"
+        ]
+      },
+      {
+        "promotionId": "twl-$1app-delivery",
+        "dealDescription": "$1 App Delivery on Standard Sized Products",
+        "demandwareConditionsText": "Excludes OS Products",
+        "isMarketClubExclusive": false,
+        "description": "$1 App Delivery Standard sized products only",
+        "tags": [
+          "ExcludeFromRefinement"
+        ]
+      }
+    ],
+    "brandCode": "REFLEX",
+    "brandDescription": "Reflex",
+    "imageGroups": [
+      {
+        "colourAttribute": "",
+        "imageUrls": [
+          "https://okapi.office-supplies.co.nz/dw/image/v2/BDMG_DEV/on/demandware.static/-/Sites-twl-master-catalog/default/dw96df35f3/images/hi-res/96/C7/R2436546_40.jpg"
+        ]
+      }
+    ],
+    "productUrl": "https://www.thewarehouse.co.nz/s/twl/product/R2436546.html",
+    "isDangerousGoods": false,
+    "isClearance": false,
+    "hasSizingChart": false,
+    "compareSpecList": [],
+    "clickAndCollectExcludedBranches": [
+      "110",
+      "192"
+    ],
+    "productId": "R2436546",
+    "categoryId": "stationerycraftparty-stationeryofficesupplies-paper-photocopypaper",
+    "categoryHierarchy": [
+      {
+        "categoryId": "stationerycraftparty-stationeryofficesupplies-paper-photocopypaper",
+        "parentCategoryId": "stationerycraftparty-stationeryofficesupplies-paper",
+        "parentCategoryName": "Paper",
+        "name": "Photocopy Paper",
+        "description": "Browse the great range of Photocopy Paper in the Paper category and buy online or in store at The Warehouse.",
+        "sizeChartId": null,
+        "productCount": 283,
+        "subCategoryCount": 0,
+        "excludeFromVisualBrowse": false
+      },
+      {
+        "categoryId": "stationerycraftparty-stationeryofficesupplies-paper",
+        "parentCategoryId": "stationerycraftparty-stationeryofficesupplies",
+        "parentCategoryName": "Stationery & Office",
+        "name": "Paper",
+        "description": "Take a look at the great range of paper available from The Warehouse - coloured paper, photo paper and more! Shop Online or Instore today ",
+        "sizeChartId": null,
+        "productCount": 549,
+        "subCategoryCount": 5,
+        "excludeFromVisualBrowse": false
+      },
+      {
+        "categoryId": "stationerycraftparty-stationeryofficesupplies",
+        "parentCategoryId": "stationerycraftparty",
+        "parentCategoryName": "Craft, Party & Stationery",
+        "name": "Stationery & Office",
+        "description": "Browse the range of office and personal Stationery available online or in store at The Warehouse. Visit us for all your office supplies.",
+        "sizeChartId": null,
+        "productCount": 3957,
+        "subCategoryCount": 17,
+        "excludeFromVisualBrowse": true
+      },
+      {
+        "categoryId": "stationerycraftparty",
+        "name": "Craft, Party & Stationery",
+        "description": "Find what you need for getting crafty or restock on office and party supplies at The Warehouse. FREE Click and Collect. Shop now!",
+        "sizeChartId": null,
+        "productCount": 10192,
+        "subCategoryCount": 6,
+        "showInBrowse": true,
+        "excludeFromVisualBrowse": false
+      }
+    ],
+    "secondaryCategoryIds": [
+      "stationerycraftparty-stationeryofficesupplies-paper-photocopypaper"
+    ],
+    "secondaryCategoriesHierarchy": [
+      [
+        {
+          "categoryId": "stationerycraftparty-stationeryofficesupplies-paper-photocopypaper",
+          "parentCategoryId": "stationerycraftparty-stationeryofficesupplies-paper",
+          "parentCategoryName": "Paper",
+          "name": "Photocopy Paper",
+          "description": "Browse the great range of Photocopy Paper in the Paper category and buy online or in store at The Warehouse.",
+          "sizeChartId": null,
+          "productCount": 283,
+          "subCategoryCount": 0,
+          "excludeFromVisualBrowse": false
+        },
+        {
+          "categoryId": "stationerycraftparty-stationeryofficesupplies-paper",
+          "parentCategoryId": "stationerycraftparty-stationeryofficesupplies",
+          "parentCategoryName": "Stationery & Office",
+          "name": "Paper",
+          "description": "Take a look at the great range of paper available from The Warehouse - coloured paper, photo paper and more! Shop Online or Instore today ",
+          "sizeChartId": null,
+          "productCount": 549,
+          "subCategoryCount": 5,
+          "excludeFromVisualBrowse": false
+        },
+        {
+          "categoryId": "stationerycraftparty-stationeryofficesupplies",
+          "parentCategoryId": "stationerycraftparty",
+          "parentCategoryName": "Craft, Party & Stationery",
+          "name": "Stationery & Office",
+          "description": "Browse the range of office and personal Stationery available online or in store at The Warehouse. Visit us for all your office supplies.",
+          "sizeChartId": null,
+          "productCount": 3957,
+          "subCategoryCount": 17,
+          "excludeFromVisualBrowse": true
+        },
+        {
+          "categoryId": "stationerycraftparty",
+          "name": "Craft, Party & Stationery",
+          "description": "Find what you need for getting crafty or restock on office and party supplies at The Warehouse. FREE Click and Collect. Shop now!",
+          "sizeChartId": null,
+          "productCount": 10192,
+          "subCategoryCount": 6,
+          "showInBrowse": true,
+          "excludeFromVisualBrowse": false
+        }
+      ]
+    ],
+    "productDescription": "The Reflex Premium Copy Paper 80gsm 500 Sheets Ream provides a smooth printing and photocopy experience. It delivers sharper and more vibrant prints with no extra ink, toner or effort.",
+    "shippingSize": "Standard",
+    "isOversized": false,
+    "partPayRestricted": "N",
+    "afterPayRestricted": "N",
+    "giftCardRestricted": "N",
+    "manufacturer": "1",
+    "manufacturerSku": "REF4080I",
+    "sizeAttribute": "A4",
+    "sizeDescription": "A4",
+    "soldOnline": "Y",
+    "clickAndCollect": "O",
+    "isClickAndCollect": true,
+    "isDigital": false,
+    "isGiftcard": false,
+    "isEssentialItem": false,
+    "subClassId": "2638",
+    "deliveryTime": "",
+    "featureList": [
+      "500 sheets",
+      "Colour: White",
+      "Size: A4",
+      "Paper density: 80gsm",
+      "Smooth surface",
+      "Quality double sided printing",
+      "Designed for laser and inkjet printers",
+      "Certification: Carbon neutral product",
+      "PEFC - Promoting Sustainable Forest Management."
+    ],
+    "hierarchy": [
+      {
+        "level": 1,
+        "code": "05780",
+        "description": "Paper Supplies"
+      },
+      {
+        "level": 2,
+        "code": "5337",
+        "description": "Paper Supplies"
+      },
+      {
+        "level": 3,
+        "code": "6665",
+        "description": "White Copy Paper"
+      },
+      {
+        "level": 4,
+        "code": "2638",
+        "description": "PCP White A4"
+      }
+    ],
+    "isMarketPlace": false,
+    "mdmProductId": "489827"
+  },
+  "guest": false,
+  "platformDemandWare": "QAT",
+  "environment": "Azure QAT",
+  "developmentPlatform": true,
+  "apiVersion": 4.9,
+  "requestedApiVersion": 4.6
+}

@@ -8,6 +8,7 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import nz.co.warehouseandroidtest.kmp.data.User
+import nz.co.warehouseandroidtest.kmp.network.FakeWarehouseApi
 import nz.co.warehouseandroidtest.kmp.network.WarehouseApi
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -31,7 +32,7 @@ class SessionRepositoryTest {
         val session = repository(api, store).ensureSession().getOrThrow()
 
         assertEquals("stored-id", session.customerId)
-        assertEquals(0, api.callCount)
+        assertEquals(0, api.loginCallCount)
     }
 
     @Test
@@ -43,7 +44,7 @@ class SessionRepositoryTest {
 
         assertEquals("cust-123", session.customerId)
         assertEquals(now + 30 * 60_000L, session.expiresAtEpochMillis)
-        assertEquals(1, api.callCount)
+        assertEquals(1, api.loginCallCount)
         assertEquals(session, store.read())
     }
 
@@ -57,7 +58,7 @@ class SessionRepositoryTest {
 
         // The legacy app kept sending "expired-id" forever; this is the behaviour it lacked.
         assertEquals("cust-123", session.customerId)
-        assertEquals(1, api.callCount)
+        assertEquals(1, api.loginCallCount)
         assertEquals("cust-123", store.read()?.customerId)
     }
 
@@ -84,13 +85,13 @@ class SessionRepositoryTest {
         // Let all five reach a suspension point: one inside loginAsGuest, four on the mutex.
         runCurrent()
 
-        assertEquals(1, api.callCount)
+        assertEquals(1, api.loginCallCount)
 
         api.release()
         val results = callers.awaitAll()
 
         // The four that waited find the session the first one wrote, rather than logging in.
-        assertEquals(1, api.callCount)
+        assertEquals(1, api.loginCallCount)
         assertTrue(results.all { it.isSuccess })
         assertTrue(results.all { it.getOrThrow().customerId == "cust-123" })
     }
