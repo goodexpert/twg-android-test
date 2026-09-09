@@ -45,9 +45,9 @@ class SessionStore(private val settings: Settings) {
 }
 
 /**
- * A [Settings] backed by the platform's secure store.
+ * A [Settings] backed by the platform's secure store — the Keychain on iOS,
+ * EncryptedSharedPreferences on Android.
  *
- * On Android this needs a Context, so [initSecureSettings] must run first. That wiring moves
- * into dependency injection once it lands.
+ * On Android this needs a Context, so `initPlatformStorage` must run first.
  */
 expect fun createSecureSettings(): Settings

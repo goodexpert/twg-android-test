@@ -5,8 +5,10 @@ import nz.co.warehouseandroidtest.kmp.network.KtorWarehouseApi
 import nz.co.warehouseandroidtest.kmp.network.WarehouseApi
 import nz.co.warehouseandroidtest.kmp.network.createWarehouseHttpClient
 import nz.co.warehouseandroidtest.kmp.session.SessionRepository
+import nz.co.warehouseandroidtest.kmp.feature.search.RecentSearchStore
 import nz.co.warehouseandroidtest.kmp.session.SessionStore
 import nz.co.warehouseandroidtest.kmp.session.createSecureSettings
+import nz.co.warehouseandroidtest.kmp.storage.createSettings
 
 /**
  * Holds everything whose lifetime is the whole process, and is the single place that knows how
@@ -36,5 +38,14 @@ class AppContainer {
 
     val sessionRepository: SessionRepository by lazy {
         SessionRepository(warehouseApi, sessionStore)
+    }
+
+    /** Ordinary storage, not the secure store: search history is not a credential. */
+    val recentSearchStore: RecentSearchStore by lazy {
+        RecentSearchStore(createSettings(RECENT_SEARCHES_STORE))
+    }
+
+    private companion object {
+        const val RECENT_SEARCHES_STORE = "warehouse_recent_searches"
     }
 }

@@ -2,21 +2,11 @@
 
 package nz.co.warehouseandroidtest.kmp.session
 
-import android.content.Context
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
-import com.russhwolf.settings.SharedPreferencesSettings
 import com.russhwolf.settings.Settings
-
-private var applicationContext: Context? = null
-
-/**
- * Must be called before [createSecureSettings], from the Android entry point. A temporary
- * seam: it disappears when dependency injection supplies the Context instead.
- */
-fun initSecureSettings(context: Context) {
-    applicationContext = context.applicationContext
-}
+import com.russhwolf.settings.SharedPreferencesSettings
+import nz.co.warehouseandroidtest.kmp.storage.requireApplicationContext
 
 /**
  * EncryptedSharedPreferences and MasterKey are deprecated as of androidx.security-crypto
@@ -28,9 +18,7 @@ fun initSecureSettings(context: Context) {
  * supported replacement is worth the work.
  */
 actual fun createSecureSettings(): Settings {
-    val context = requireNotNull(applicationContext) {
-        "initSecureSettings(context) must be called before createSecureSettings()"
-    }
+    val context = requireApplicationContext()
     val masterKey = MasterKey.Builder(context)
         .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
         .build()
