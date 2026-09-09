@@ -10,5 +10,7 @@ import androidx.compose.ui.tooling.preview.Preview
 @Preview(showBackground = true)
 @Composable
 private fun AppPreview() {
-    App()
+    // Safe to construct: everything in the container is lazy, and a static preview does not run
+    // the LaunchedEffect that would reach the network.
+    App(AppContainer())
 }
