@@ -6,6 +6,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
+import coil3.ImageLoader
+import coil3.compose.setSingletonImageLoaderFactory
+import coil3.network.ktor3.KtorNetworkFetcherFactory
 import nz.co.warehouseandroidtest.kmp.feature.home.HomeScreen
 import nz.co.warehouseandroidtest.kmp.feature.productlist.ProductListScreen
 import nz.co.warehouseandroidtest.kmp.feature.search.SearchScreen
@@ -22,6 +25,16 @@ import nz.co.warehouseandroidtest.kmp.ui.SearchRoute
  */
 @Composable
 fun App(container: AppContainer) {
+    // Coil's singleton ImageLoader has no HTTP fetcher on iOS without help. Registering
+    // KtorNetworkFetcherFactory here wires the same Ktor stack the API calls use, so images
+    // load on both platforms. setSingletonImageLoaderFactory only calls the factory the first
+    // time an AsyncImage asks for the singleton, so nothing is built until it is needed.
+    setSingletonImageLoaderFactory { context ->
+        ImageLoader.Builder(context)
+            .components { add(KtorNetworkFetcherFactory()) }
+            .build()
+    }
+
     val navController = rememberNavController()
 
     MaterialTheme {
@@ -44,7 +57,11 @@ fun App(container: AppContainer) {
             composable<ProductListRoute> { entry ->
                 // Decoded from the route by the serializer, not parsed out of a path string.
                 val route = entry.toRoute<ProductListRoute>()
-                ProductListScreen(query = route.query, onBack = navController::navigateUp)
+                ProductListScreen(
+                    container = container,
+                    query = route.query,
+                    onBack = navController::navigateUp,
+                )
             }
         }
     }
