@@ -1,4 +1,4 @@
-package nz.co.warehouseandroidtest.kmp.feature.search
+package nz.co.warehouseandroidtest.kmp.search
 
 import com.russhwolf.settings.Settings
 import kotlinx.serialization.builtins.ListSerializer

@@ -11,7 +11,7 @@ import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import nz.co.warehouseandroidtest.kmp.data.User
-import nz.co.warehouseandroidtest.kmp.session.FakeWarehouseApi
+import nz.co.warehouseandroidtest.kmp.network.FakeWarehouseApi
 import nz.co.warehouseandroidtest.kmp.session.SessionRepository
 import nz.co.warehouseandroidtest.kmp.session.SessionStore
 import kotlin.test.AfterTest
@@ -72,12 +72,12 @@ class HomeViewModelTest {
     @Test
     fun checksTheSessionAsSoonAsTheScreenOpens() = runTest {
         // Held, so the login is still in flight when the assertions run.
-        val api = FakeWarehouseApi(Result.success(loggedInUser), CompletableDeferred())
+        val api = FakeWarehouseApi(Result.success(loggedInUser), gate = CompletableDeferred())
 
         val viewModel = HomeViewModel(repository(api))
         runCurrent()
 
-        assertEquals(1, api.callCount)
+        assertEquals(1, api.loginCallCount)
         // The spinner has something to show for as long as the login is outstanding.
         assertTrue(viewModel.state.value.isCheckingSession)
 
@@ -91,12 +91,12 @@ class HomeViewModelTest {
         val api = FakeWarehouseApi(Result.failure(RuntimeException("boom")))
         val viewModel = HomeViewModel(repository(api))
         advanceUntilIdle()
-        assertEquals(1, api.callCount)
+        assertEquals(1, api.loginCallCount)
 
         viewModel.onIntent(HomeIntent.RetryLogin)
         advanceUntilIdle()
 
-        assertEquals(2, api.callCount)
+        assertEquals(2, api.loginCallCount)
     }
 
     @Test

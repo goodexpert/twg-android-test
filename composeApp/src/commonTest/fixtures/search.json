@@ -1,0 +1,757 @@
+{
+  "products": [
+    {
+      "productName": "Reflex Premium Copy Paper 80gsm 500 Sheet Ream A4",
+      "productKey": 2436546,
+      "priceInfo": {
+        "price": 9.99
+      },
+      "imageGroups": [
+        {
+          "colourAttribute": "",
+          "imageUrls": [
+            "https://okapi.office-supplies.co.nz/dw/image/v2/BDMG_DEV/on/demandware.static/-/Sites-twl-master-catalog/default/dw96df35f3/images/hi-res/96/C7/R2436546_40.jpg"
+          ]
+        }
+      ],
+      "productImageUrl": "https://okapi.office-supplies.co.nz/dw/image/v2/BDMG_DEV/on/demandware.static/-/Sites-twl-master-catalog/default/dw96df35f3/images/hi-res/96/C7/R2436546_40.jpg",
+      "productBarcode": "9311995048689",
+      "productSet": false,
+      "brandCode": "REFLEX",
+      "brandDescription": "Reflex",
+      "inventory": {
+        "available": true,
+        "preorderable": false,
+        "backorderable": false,
+        "soh": 408
+      },
+      "promotions": [
+        {
+          "promotionId": "marketclub-sandbox-5off",
+          "dealDescription": "5% off your order. Download our app and join MarketClub. This is the callout",
+          "price": 9.99,
+          "isMarketClubExclusive": false,
+          "description": "5% off your order. Download our app and join MarketClub",
+          "tags": [
+            "ExcludeFromRefinement"
+          ]
+        },
+        {
+          "promotionId": "easter-2024-game-sitewide-8-IncludeOnline",
+          "dealDescription": "Get $8 off when you spend $80 on a huge range sitewide",
+          "isMarketClubExclusive": false,
+          "description": "Get $8 off when you spend $80 on a huge range sitewide",
+          "tags": [
+            "ExcludeFromRefinement"
+          ]
+        },
+        {
+          "promotionId": "easter-2024-game-sitewide-8-excludeStoreOnlineCombo",
+          "dealDescription": "Get $8 off when you spend $80 on a huge range sitewide",
+          "isMarketClubExclusive": false,
+          "description": "Get $8 off when you spend $80 on a huge range sitewide",
+          "tags": [
+            "ExcludeFromRefinement"
+          ]
+        },
+        {
+          "promotionId": "twl-containsOnline-Promo",
+          "dealDescription": "Can order online (if stock)",
+          "isMarketClubExclusive": false,
+          "description": "Contains Online Products Promo",
+          "tags": [
+            "ExcludeFromRefinement"
+          ]
+        },
+        {
+          "promotionId": "twl-omni-Promo",
+          "dealDescription": "Omni Products",
+          "isMarketClubExclusive": false,
+          "description": "Omni Products Promo",
+          "tags": [
+            "ExcludeFromRefinement"
+          ]
+        },
+        {
+          "promotionId": "twl-$1app-delivery",
+          "dealDescription": "$1 App Delivery on Standard Sized Products",
+          "isMarketClubExclusive": false,
+          "description": "$1 App Delivery Standard sized products only",
+          "tags": [
+            "ExcludeFromRefinement"
+          ]
+        }
+      ],
+      "productId": "R2436546",
+      "categoryId": "stationerycraftparty-stationeryofficesupplies-paper-photocopypaper",
+      "secondaryCategoryIds": [
+        "stationerycraftparty-stationeryofficesupplies-paper-photocopypaper"
+      ],
+      "productDescription": "The Reflex Premium Copy Paper 80gsm 500 Sheets Ream provides a smooth printing and photocopy experience. It delivers sharper and more vibrant prints with no extra ink, toner or effort.",
+      "shippingSize": "Standard",
+      "isOversized": false,
+      "manufacturer": "1",
+      "manufacturerSku": "REF4080I",
+      "sizeAttribute": "A4",
+      "sizeDescription": "A4",
+      "soldOnline": "Y",
+      "clickAndCollect": "O",
+      "isClickAndCollect": true,
+      "isDigital": false,
+      "isGiftcard": false,
+      "isEssentialItem": false,
+      "subClassId": "2638",
+      "deliveryTime": "",
+      "isMarketPlace": false,
+      "mdmProductId": "489827"
+    },
+    {
+      "productName": "Color Copy Digital Laser Paper 300gsm A4 White 30 Pack",
+      "productKey": 2216076,
+      "priceInfo": {
+        "price": 29
+      },
+      "imageGroups": [
+        {
+          "colourAttribute": "",
+          "imageUrls": [
+            "https://okapi.office-supplies.co.nz/dw/image/v2/BDMG_DEV/on/demandware.static/-/Sites-twl-master-catalog/default/dw0f2b42fe/images/hi-res/33/E1/R2216076_40.jpg"
+          ]
+        }
+      ],
+      "productImageUrl": "https://okapi.office-supplies.co.nz/dw/image/v2/BDMG_DEV/on/demandware.static/-/Sites-twl-master-catalog/default/dw0f2b42fe/images/hi-res/33/E1/R2216076_40.jpg",
+      "productBarcode": "9414288150912",
+      "productSet": false,
+      "brandCode": "COLOR COPY",
+      "brandDescription": "Color Copy",
+      "inventory": {
+        "available": true,
+        "preorderable": false,
+        "backorderable": false,
+        "soh": 5
+      },
+      "productId": "R2216076",
+      "categoryId": "stationerycraftparty-stationeryofficesupplies-paper-photocopypaper",
+      "secondaryCategoryIds": [
+        "fsc",
+        "better-product",
+        "sustainability-stationerycraftparty-stationery",
+        "stationerycraftparty-stationeryofficesupplies-paper-photocopypaper"
+      ],
+      "productDescription": "The Color Copy Digital Laser Paper 30 Pack makes a useful addition to your printing supplies. These sheets are pH-neutral with decreased wear on printing machinery. An excellent paper formulation ensures an even transfer of toner. This pack includes 30 sheets, which is an ideal pick for colour laser prints.",
+      "shippingSize": "Standard",
+      "isOversized": false,
+      "manufacturer": "1",
+      "manufacturerSku": "15091",
+      "colourAttribute": "White",
+      "colourDescription": "White",
+      "refinementColour": "White",
+      "sizeAttribute": "A4",
+      "sizeDescription": "A4",
+      "soldOnline": "Y",
+      "clickAndCollect": "O",
+      "isClickAndCollect": true,
+      "isDigital": false,
+      "isGiftcard": false,
+      "isEssentialItem": false,
+      "subClassId": "1681",
+      "deliveryTime": "",
+      "isMarketPlace": false,
+      "mdmProductId": "494619"
+    },
+    {
+      "productName": "Brother Photo Paper Glossy BP71Ga3 260gsm A3",
+      "productKey": 2226928,
+      "priceInfo": {
+        "price": 61.99
+      },
+      "imageGroups": [
+        {
+          "colourAttribute": "",
+          "imageUrls": [
+            "https://okapi.office-supplies.co.nz/dw/image/v2/BDMG_DEV/on/demandware.static/-/Sites-twl-master-catalog/default/dw12abe89b/images/hi-res/1C/63/R2226928_00.jpg"
+          ]
+        }
+      ],
+      "productImageUrl": "https://okapi.office-supplies.co.nz/dw/image/v2/BDMG_DEV/on/demandware.static/-/Sites-twl-master-catalog/default/dw12abe89b/images/hi-res/1C/63/R2226928_00.jpg",
+      "productBarcode": "4977766658409",
+      "productSet": false,
+      "brandCode": "BROTHER",
+      "brandDescription": "Brother",
+      "inventory": {
+        "available": true,
+        "preorderable": false,
+        "backorderable": false,
+        "soh": 6
+      },
+      "productId": "R2226928",
+      "categoryId": "stationerycraftparty-stationeryofficesupplies-paper-photopaper",
+      "secondaryCategoryIds": [
+        "essentials-electronics-inktoner-paper",
+        "stationerycraftparty-stationeryofficesupplies-paper-photopaper",
+        "backtoschool-technology-printersaccessories-inktoner"
+      ],
+      "productDescription": "Brother Photo Paper A3 Glossy BP71GA3 260gsm",
+      "shippingSize": "Standard",
+      "isOversized": false,
+      "manufacturer": "1",
+      "manufacturerSku": "BP71GA3",
+      "colourAttribute": "WHT",
+      "colourDescription": "White",
+      "refinementColour": "White",
+      "sizeAttribute": "OS",
+      "sizeDescription": "OS",
+      "soldOnline": "Y",
+      "clickAndCollect": "O",
+      "isClickAndCollect": true,
+      "isDigital": false,
+      "isGiftcard": false,
+      "isEssentialItem": false,
+      "subClassId": "5065",
+      "deliveryTime": "",
+      "isMarketPlace": false,
+      "mdmProductId": "460274"
+    },
+    {
+      "productName": "HP Photo Paper A4 Glossy 100 Sheet Pack",
+      "productKey": 2748449,
+      "priceInfo": {
+        "price": 29
+      },
+      "imageGroups": [
+        {
+          "colourAttribute": "",
+          "imageUrls": [
+            "https://okapi.office-supplies.co.nz/dw/image/v2/BDMG_DEV/on/demandware.static/-/Sites-twl-master-catalog/default/dw277f018c/images/hi-res/E3/29/R2748449_40.jpg"
+          ]
+        }
+      ],
+      "productImageUrl": "https://okapi.office-supplies.co.nz/dw/image/v2/BDMG_DEV/on/demandware.static/-/Sites-twl-master-catalog/default/dw277f018c/images/hi-res/E3/29/R2748449_40.jpg",
+      "productBarcode": "194721875594",
+      "productSet": false,
+      "brandCode": "HEWLETT",
+      "brandDescription": "HP",
+      "inventory": {
+        "available": true,
+        "preorderable": false,
+        "backorderable": false,
+        "soh": 65
+      },
+      "productId": "R2748449",
+      "categoryId": "stationerycraftparty-stationeryofficesupplies-paper-photopaper",
+      "secondaryCategoryIds": [
+        "newarrivals-craftpartystationery",
+        "backtoschool-technology-printersaccessories-inktoner",
+        "stationerycraftparty-stationeryofficesupplies-paper-photopaper"
+      ],
+      "productDescription": "Print colorful, everyday snapshots for a low cost. This glossy paper dries quickly for easy handling and can be used with any inkjet printer.",
+      "shippingSize": "Standard",
+      "isOversized": false,
+      "manufacturer": "1",
+      "manufacturerSku": "4860515",
+      "colourAttribute": "WHT",
+      "colourDescription": "White",
+      "refinementColour": "White",
+      "sizeAttribute": "OS",
+      "sizeDescription": "OS",
+      "soldOnline": "Y",
+      "clickAndCollect": "O",
+      "isClickAndCollect": true,
+      "isDigital": false,
+      "isGiftcard": false,
+      "isEssentialItem": false,
+      "subClassId": "5065",
+      "deliveryTime": "",
+      "isMarketPlace": false,
+      "mdmProductId": "452083"
+    },
+    {
+      "productName": "Epson Photo Paper So42538 Glossy 200gsm A4 20 Pack",
+      "productKey": 2215515,
+      "priceInfo": {
+        "price": 21.99
+      },
+      "imageGroups": [
+        {
+          "colourAttribute": "",
+          "imageUrls": [
+            "https://okapi.office-supplies.co.nz/dw/image/v2/BDMG_DEV/on/demandware.static/-/Sites-twl-master-catalog/default/dw0822ca01/images/hi-res/B1/22/R2215515_00.jpg"
+          ]
+        }
+      ],
+      "productImageUrl": "https://okapi.office-supplies.co.nz/dw/image/v2/BDMG_DEV/on/demandware.static/-/Sites-twl-master-catalog/default/dw0822ca01/images/hi-res/B1/22/R2215515_00.jpg",
+      "productBarcode": "8715946529431",
+      "productSet": false,
+      "brandCode": "EPSON",
+      "brandDescription": "Epson",
+      "inventory": {
+        "available": true,
+        "preorderable": false,
+        "backorderable": false,
+        "soh": 29
+      },
+      "productId": "R2215515",
+      "categoryId": "stationerycraftparty-stationeryofficesupplies-paper-photopaper",
+      "secondaryCategoryIds": [
+        "essentials-electronics-inktoner-paper",
+        "stationerycraftparty-stationeryofficesupplies-paper-photopaper",
+        "backtoschool-technology-printersaccessories-inktoner"
+      ],
+      "productDescription": "Glossy Photo Paper has a high gloss finish that is perfect for printing your favourite cherished photos and enlargements for use with glass frames and photo albums.",
+      "shippingSize": "Standard",
+      "isOversized": false,
+      "manufacturer": "1",
+      "manufacturerSku": "2482169",
+      "colourAttribute": "WHT",
+      "colourDescription": "White",
+      "refinementColour": "White",
+      "sizeAttribute": "A4",
+      "sizeDescription": "A4",
+      "soldOnline": "Y",
+      "clickAndCollect": "O",
+      "isClickAndCollect": true,
+      "isDigital": false,
+      "isGiftcard": false,
+      "isEssentialItem": false,
+      "subClassId": "5065",
+      "deliveryTime": "",
+      "isMarketPlace": false,
+      "mdmProductId": "460345"
+    }
+  ],
+  "searchTerm": "Paper",
+  "suggestions": {
+    "categories": [
+      {
+        "categoryId": "stationerycraftparty-stationeryofficesupplies-paper-photopaper",
+        "parentCategoryId": "stationerycraftparty-stationeryofficesupplies-paper",
+        "parentCategoryName": "Paper",
+        "name": "Photo Paper",
+        "description": "Browse the great range of Photo Paper in the Paper category and buy online or in store at The Warehouse.",
+        "sizeChartId": null,
+        "productCount": 11,
+        "subCategoryCount": 0,
+        "excludeFromVisualBrowse": false
+      },
+      {
+        "categoryId": "stationerycraftparty-stationeryofficesupplies-paper",
+        "parentCategoryId": "stationerycraftparty-stationeryofficesupplies",
+        "parentCategoryName": "Stationery & Office",
+        "name": "Paper",
+        "description": "Take a look at the great range of paper available from The Warehouse - coloured paper, photo paper and more! Shop Online or Instore today ",
+        "sizeChartId": null,
+        "productCount": 549,
+        "subCategoryCount": 5,
+        "excludeFromVisualBrowse": false
+      },
+      {
+        "categoryId": "stationerycraftparty-stationeryofficesupplies-paper-photocopypaper",
+        "parentCategoryId": "stationerycraftparty-stationeryofficesupplies-paper",
+        "parentCategoryName": "Paper",
+        "name": "Photocopy Paper",
+        "description": "Browse the great range of Photocopy Paper in the Paper category and buy online or in store at The Warehouse.",
+        "sizeChartId": null,
+        "productCount": 283,
+        "subCategoryCount": 0,
+        "excludeFromVisualBrowse": false
+      },
+      {
+        "categoryId": "gifting-wrappingcards-wrappingpapper",
+        "parentCategoryId": "gifting-wrappingcards",
+        "parentCategoryName": "Wrapping & Cards",
+        "name": "Wrapping Paper",
+        "description": "Wrapping Paper",
+        "sizeChartId": null,
+        "productCount": 1,
+        "subCategoryCount": 0,
+        "excludeFromVisualBrowse": false
+      },
+      {
+        "categoryId": "foodhouseholdpets-household-toiletpaper",
+        "parentCategoryId": "foodhouseholdpets-household",
+        "parentCategoryName": "Household Essentials",
+        "name": "Toilet Paper",
+        "description": "Buy Toilet Paper Rolls online. Browse our range of Toilet Paper Rolls at The Warehouse. Shop now.",
+        "sizeChartId": null,
+        "productCount": 7,
+        "subCategoryCount": 0,
+        "excludeFromVisualBrowse": false
+      },
+      {
+        "categoryId": "christmasshop-giftwrapcards-wrappingpaper",
+        "parentCategoryId": "christmasshop-giftwrapcards",
+        "parentCategoryName": "Christmas Gift Wrap & Cards",
+        "name": "Wrapping Paper",
+        "description": "Wrap your gifts with our huge range of Christmas wrapping paper. From snow themes, Christmas trees and classic options, we have what you need. Shop now.",
+        "sizeChartId": null,
+        "productCount": 5,
+        "subCategoryCount": 0,
+        "excludeFromVisualBrowse": false
+      },
+      {
+        "categoryId": "stationerycraftparty-stationeryofficesupplies-paper-faxpaper",
+        "parentCategoryId": "stationerycraftparty-stationeryofficesupplies-paper",
+        "parentCategoryName": "Paper",
+        "name": "Fax Paper",
+        "description": "The Warehouse",
+        "sizeChartId": null,
+        "productCount": 7,
+        "subCategoryCount": 0,
+        "excludeFromVisualBrowse": false
+      }
+    ],
+    "brands": [
+      "Paper Mate",
+      "Direct Paper"
+    ]
+  },
+  "total": 4276,
+  "facets": [
+    {
+      "id": "c_marketplaceItem",
+      "name": "Sold By",
+      "totalCount": 2,
+      "values": [
+        {
+          "id": "The Warehouse",
+          "name": "The Warehouse",
+          "count": 4037
+        },
+        {
+          "id": "Marketplace Store",
+          "name": "Marketplace Store",
+          "count": 239
+        }
+      ]
+    },
+    {
+      "id": "cgid",
+      "name": "Category",
+      "totalCount": 38,
+      "values": [
+        {
+          "id": "stationerycraftparty",
+          "name": "Craft, Party & Stationery",
+          "count": 2374
+        },
+        {
+          "id": "booksmusicmovies",
+          "name": "Books",
+          "count": 1340
+        }
+      ]
+    },
+    {
+      "id": "c_subclassCode",
+      "name": "Product Type",
+      "totalCount": 205,
+      "values": [
+        {
+          "id": "Accessories",
+          "name": "Accessories",
+          "count": 10
+        },
+        {
+          "id": "Action Figures",
+          "name": "Action Figures",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "c_size",
+      "name": "Size",
+      "totalCount": 95,
+      "values": [
+        {
+          "id": "Queen",
+          "name": "Queen",
+          "count": 1
+        },
+        {
+          "id": "40cm x 60cm",
+          "name": "40cm x 60cm",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "price",
+      "name": "Price",
+      "totalCount": 8,
+      "values": [
+        {
+          "id": "(0..20)",
+          "name": "$0 – $19.99",
+          "count": 2071
+        },
+        {
+          "id": "(20..50)",
+          "name": "$20 – $49.99",
+          "count": 566
+        }
+      ]
+    },
+    {
+      "id": "c_color",
+      "name": "Colour",
+      "totalCount": 16,
+      "values": [
+        {
+          "id": "Black",
+          "name": "Black",
+          "count": 230
+        },
+        {
+          "id": "White",
+          "name": "White",
+          "count": 296
+        }
+      ]
+    },
+    {
+      "id": "pmid",
+      "name": "Specials",
+      "totalCount": 13,
+      "values": [
+        {
+          "id": "twl-onlineOnly-Promo",
+          "name": "Online Only Products Promo",
+          "count": 4037
+        },
+        {
+          "id": "twl-storeOnly-Promo",
+          "name": "Store Only Products Promo",
+          "count": 4037
+        }
+      ]
+    },
+    {
+      "id": "c_channelType",
+      "name": "Sales Channel",
+      "totalCount": 2,
+      "values": [
+        {
+          "id": "Store",
+          "name": "Store",
+          "count": 3885
+        },
+        {
+          "id": "Online",
+          "name": "Online",
+          "count": 3766
+        }
+      ]
+    },
+    {
+      "id": "c_clearance",
+      "name": "Clearance",
+      "totalCount": 2,
+      "values": [
+        {
+          "id": "On Clearance",
+          "name": "On Clearance",
+          "count": 648
+        },
+        {
+          "id": "Non-Clearance",
+          "name": "Non-Clearance",
+          "count": 3579
+        }
+      ]
+    },
+    {
+      "id": "brand",
+      "name": "Brand",
+      "totalCount": 241,
+      "values": [
+        {
+          "id": "3L",
+          "name": "3L",
+          "count": 1
+        },
+        {
+          "id": "3M",
+          "name": "3M",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "c_environmentalProductStatus",
+      "name": "Sustainability",
+      "totalCount": 21,
+      "values": [
+        {
+          "id": "FSCMX",
+          "name": "Fsc Mix Certified",
+          "count": 421
+        },
+        {
+          "id": "FSC",
+          "name": "Forest Stewardship Council Certifcation",
+          "count": 288
+        }
+      ]
+    },
+    {
+      "id": "c_vendorName",
+      "name": "Marketplace Stores",
+      "totalCount": 10,
+      "values": [
+        {
+          "id": "Ezibuy",
+          "name": "Ezibuy",
+          "count": 4
+        },
+        {
+          "id": "Fitness NZ - the GARMIN specialist",
+          "name": "Fitness NZ - the GARMIN specialist",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "id": "c_vendorShippingCountry",
+      "name": "Marketplace Shipping Location",
+      "totalCount": 3,
+      "values": [
+        {
+          "id": "CN",
+          "name": "China",
+          "count": 177
+        },
+        {
+          "id": "NZ",
+          "name": "New Zealand",
+          "count": 59
+        }
+      ]
+    },
+    {
+      "id": "c_artist",
+      "name": "Artist - Author",
+      "totalCount": 577,
+      "values": [
+        {
+          "id": "AA Milne",
+          "name": "AA Milne",
+          "count": 4
+        },
+        {
+          "id": "Aaron Blabey",
+          "name": "Aaron Blabey",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "id": "c_bvAverageRating",
+      "name": "Rating",
+      "totalCount": 5,
+      "values": [
+        {
+          "id": "5.0",
+          "name": "5.0",
+          "count": 96
+        },
+        {
+          "id": "4.0",
+          "name": "4.0",
+          "count": 137
+        }
+      ]
+    },
+    {
+      "id": "c_licenseCode",
+      "name": "Official Merchandise",
+      "totalCount": 31,
+      "values": [
+        {
+          "id": "101 Dalmatians",
+          "name": "101 Dalmatians",
+          "count": 1
+        },
+        {
+          "id": "All Blacks",
+          "name": "All Blacks",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "c_fulfilmentOptions",
+      "name": "Availability Options",
+      "totalCount": 2,
+      "values": [
+        {
+          "id": "DELIVERY",
+          "name": "Delivery",
+          "count": 3957
+        },
+        {
+          "id": "PICKUP",
+          "name": "Pickup",
+          "count": 3184
+        }
+      ]
+    },
+    {
+      "id": "c_season",
+      "name": "Season",
+      "totalCount": 5,
+      "values": [
+        {
+          "id": "ALL",
+          "name": "All Seasons",
+          "count": 2130
+        },
+        {
+          "id": "All Seasons",
+          "name": "All Seasons",
+          "count": 7
+        }
+      ]
+    }
+  ],
+  "sortOptions": [
+    {
+      "id": "default-navigation-option",
+      "name": "Best Match"
+    },
+    {
+      "id": "product-name-ascending",
+      "name": "Product Name A - Z"
+    },
+    {
+      "id": "product-name-descending",
+      "name": "Product Name Z - A"
+    },
+    {
+      "id": "price-low-to-high",
+      "name": "Price Low To High"
+    },
+    {
+      "id": "price-high-to-low",
+      "name": "Price High to Low"
+    },
+    {
+      "id": "top-rated",
+      "name": "Top Rated"
+    },
+    {
+      "id": "new-arrivals",
+      "name": "New Arrivals"
+    },
+    {
+      "id": "best-sellers",
+      "name": "Best Sellers"
+    }
+  ],
+  "guest": false,
+  "platformDemandWare": "QAT",
+  "environment": "Azure QAT",
+  "developmentPlatform": true,
+  "apiVersion": 4.9,
+  "requestedApiVersion": 4.6
+}

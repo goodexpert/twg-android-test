@@ -9,6 +9,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
+import nz.co.warehouseandroidtest.kmp.search.RecentSearchStore
 
 class SearchViewModelTest {
 
