@@ -60,13 +60,13 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (PreferenceUtil.getUserId(this) == null) {
-            ((WarehouseTestApp) getApplicationContext()).getWarehouseService().getNewUserId().enqueue(new Callback<User>() {
+            ((WarehouseTestApp) getApplicationContext()).getWarehouseService().loginAsGuest().enqueue(new Callback<User>() {
                         @Override
                         public void onResponse(Call<User> call, Response<User> response) {
                             if (response.isSuccessful()) {
                                 User user = response.body();
-                                if (null != user && null != user.UserID) {
-                                    PreferenceUtil.putUserId(MainActivity.this, user.UserID);
+                                if (null != user && null != user.customerId) {
+                                    PreferenceUtil.putUserId(MainActivity.this, user.customerId);
                                 }
                             } else {
                                 Toast.makeText(MainActivity.this, "Get User failed!", Toast.LENGTH_SHORT).show();

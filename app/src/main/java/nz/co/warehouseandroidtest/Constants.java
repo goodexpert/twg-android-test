@@ -1,7 +1,7 @@
 package nz.co.warehouseandroidtest;
 
 public class Constants {
-    public static final String HTTP_URL_ENDPOINT = "https://twg.azure-api.net/";
+    public static final String HTTP_URL_ENDPOINT = "https://legacy-apim.twg.co.nz/";
     public static final String PREF_USER_ID = "userId";
     public static final int BRANCH_ID = 208;
     // Injected at build time from local.properties (twg.subscriptionKey) or the

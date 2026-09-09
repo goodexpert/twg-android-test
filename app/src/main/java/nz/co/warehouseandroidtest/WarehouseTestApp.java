@@ -26,7 +26,10 @@ public class WarehouseTestApp extends Application {
         builder.addInterceptor(new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
-                Request request = chain.request().newBuilder().addHeader("Ocp-Apim-Subscription-Key", Constants.SUBSCRIPTION_KEY).build();
+                Request request = chain.request().newBuilder()
+                        .addHeader("Ocp-Apim-Subscription-Key", Constants.SUBSCRIPTION_KEY)
+                        .addHeader("X-TWL-Device", "Android")
+                        .build();
                 return chain.proceed(request);
             }
         });
