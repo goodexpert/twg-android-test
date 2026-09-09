@@ -14,7 +14,10 @@ struct ComposeView: UIViewControllerRepresentable {
 
 struct ContentView: View {
     var body: some View {
+        // Ignore all safe areas so Compose owns inset handling through its own WindowInsets.
+        // Ignoring only .keyboard let SwiftUI apply the top inset as well, which Compose's
+        // Scaffold then applied again — the doubled top padding seen on iOS.
         ComposeView()
-            .ignoresSafeArea(.keyboard)
+            .ignoresSafeArea()
     }
 }

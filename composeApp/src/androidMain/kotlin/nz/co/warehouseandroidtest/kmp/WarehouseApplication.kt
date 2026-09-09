@@ -1,7 +1,7 @@
 package nz.co.warehouseandroidtest.kmp
 
 import android.app.Application
-import nz.co.warehouseandroidtest.kmp.session.initSecureSettings
+import nz.co.warehouseandroidtest.kmp.storage.initPlatformStorage
 
 /**
  * Two jobs, both of which have to happen once per process.
@@ -25,6 +25,6 @@ class WarehouseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        initSecureSettings(this)
+        initPlatformStorage(this)
     }
 }

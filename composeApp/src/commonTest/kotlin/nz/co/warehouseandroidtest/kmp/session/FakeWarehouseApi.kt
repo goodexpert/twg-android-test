@@ -13,8 +13,14 @@ import nz.co.warehouseandroidtest.kmp.network.WarehouseApi
  */
 class FakeWarehouseApi(
     private val result: Result<User>,
-    private val gate: CompletableDeferred<Unit> = CompletableDeferred(Unit),
+    gate: CompletableDeferred<Unit> = CompletableDeferred(Unit),
 ) : WarehouseApi {
+
+    /**
+     * Reassignable so a test can let the first login finish and still catch the next one
+     * mid-flight — see [hold]. A single immutable gate can only ever be opened once.
+     */
+    private var gate: CompletableDeferred<Unit> = gate
 
     var callCount: Int = 0
         private set
@@ -27,5 +33,10 @@ class FakeWarehouseApi(
 
     fun release() {
         gate.complete(Unit)
+    }
+
+    /** Re-arms the gate, so the next [loginAsGuest] suspends until [release]. */
+    fun hold() {
+        gate = CompletableDeferred()
     }
 }

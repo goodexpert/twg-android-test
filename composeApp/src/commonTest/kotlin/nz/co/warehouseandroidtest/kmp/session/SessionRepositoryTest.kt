@@ -2,6 +2,7 @@ package nz.co.warehouseandroidtest.kmp.session
 
 import com.russhwolf.settings.MapSettings
 import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.test.runCurrent
@@ -71,6 +72,7 @@ class SessionRepositoryTest {
         assertNull(store.read())
     }
 
+    @OptIn(ExperimentalCoroutinesApi::class) // runCurrent
     @Test
     fun concurrentCallersTriggerASingleLogin() = runTest {
         // Uncompleted gate: loginAsGuest suspends, so callers stack up behind the first.
