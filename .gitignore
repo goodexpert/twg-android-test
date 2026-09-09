@@ -46,6 +46,12 @@ CLAUDE.md
 .env.development.local
 .env.production.local
 
+# Xcode
+xcuserdata/
+*.xcuserstate
+DerivedData/
+*.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+
 # fastlane
 fastlane/report.xml
 fastlane/Preview.html

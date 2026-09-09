@@ -20,4 +20,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "twg-android-test"
 
+// Legacy Java/Android app. Untouched until the Compose Multiplatform port reaches parity.
 include(":app")
+
+// Kotlin Multiplatform + Compose Multiplatform module shared by Android and iOS.
+include(":composeApp")

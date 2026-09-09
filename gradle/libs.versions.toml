@@ -1,9 +1,13 @@
 [versions]
-agp = "8.13.2"
+agp = "9.4.0"
 
-compileSdk = "35"
-minSdk = "24"
+compileSdk = "37"
+minSdk = "28"
 targetSdk = "35"
+
+kotlin = "2.4.20"
+composeMultiplatform = "1.12.0"
+androidxActivityCompose = "1.13.0"
 
 # Legacy pre-AndroidX support library. Replaced during the KMP/CMP migration.
 supportLibrary = "28.0.0"
@@ -41,9 +45,15 @@ glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glide-transformations = { module = "jp.wasabeef:glide-transformations", version.ref = "glideTransformations" }
 zxing-library = { module = "cn.yipianfengye.android:zxing-library", version.ref = "zxing" }
 
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivityCompose" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+
 junit = { module = "junit:junit", version.ref = "junit" }
 support-test-runner = { module = "com.android.support.test:runner", version.ref = "supportTestRunner" }
 espresso-core = { module = "com.android.support.test.espresso:espresso-core", version.ref = "espresso" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
