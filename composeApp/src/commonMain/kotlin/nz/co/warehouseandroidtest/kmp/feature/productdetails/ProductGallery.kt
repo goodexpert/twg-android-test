@@ -150,4 +150,3 @@ private fun Thumbnail(url: String, isSelected: Boolean, onClick: () -> Unit) {
             .padding(4.dp),
     )
 }
-

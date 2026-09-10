@@ -1,3 +1,10 @@
+// Layout dp/sp values, hex colour tokens and the odd fraction (0.7f, 0.5f, …) are inline
+// on purpose here — this screen carries its own tokens until the app grows a theme file
+// (see the class doc below). Values with real semantics — page-prefetch threshold, skeleton
+// row count — are already extracted as `private const val`; the rest is Compose layout
+// grammar and would fight readability if hoisted.
+@file:Suppress("MagicNumber")
+
 package nz.co.warehouseandroidtest.kmp.feature.productlist
 
 import androidx.compose.foundation.background
@@ -395,12 +402,18 @@ private fun ProductCountRow(
             modifier = Modifier.weight(1f),
         )
 
-        val next = if (layout == ProductListLayout.List) ProductListLayout.Grid
-        else ProductListLayout.List
+        val next = if (layout == ProductListLayout.List) {
+            ProductListLayout.Grid
+        } else {
+            ProductListLayout.List
+        }
         IconButton(onClick = { onLayoutChange(next) }) {
             Icon(
-                imageVector = if (layout == ProductListLayout.List) Icons.Default.GridView
-                else Icons.AutoMirrored.Filled.ViewList,
+                imageVector = if (layout == ProductListLayout.List) {
+                    Icons.Default.GridView
+                } else {
+                    Icons.AutoMirrored.Filled.ViewList
+                },
                 contentDescription = "Toggle layout",
                 tint = TwgGreen,
             )
@@ -476,7 +489,7 @@ private fun ProductGrid(
             )
         }
 
-       // Full-width so the spinner/retry sits on its own row rather than in one cell.
+        // Full-width so the spinner/retry sits on its own row rather than in one cell.
         if (isLoadingMore || loadMoreError) {
             item(key = "paging-footer", span = { GridItemSpan(maxLineSpan) }) {
                 if (isLoadingMore) LoadingMoreFooter() else LoadMoreErrorFooter(onLoadMore)

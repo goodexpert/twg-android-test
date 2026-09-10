@@ -1,8 +1,8 @@
 package nz.co.warehouseandroidtest.kmp.data
 
+import kotlinx.serialization.Serializable
 import kotlin.math.abs
 import kotlin.math.round
-import kotlinx.serialization.Serializable
 
 /**
  * One product, as `twgCSharpTest/Product.json` returns it inside [ProductResponse].
@@ -110,8 +110,12 @@ data class Product(
  * Rounds to the nearest cent rather than truncating, so a price that arrives as `9.989999`
  * from a JSON double does not lose a cent.
  */
+private const val CENTS_PER_DOLLAR = 100
+
 internal fun formatNzd(price: Double): String {
-    val cents = round(abs(price) * 100).toLong()
+    val cents = round(abs(price) * CENTS_PER_DOLLAR).toLong()
     val sign = if (price < 0) "-" else ""
-    return "$sign\$${cents / 100}.${(cents % 100).toString().padStart(2, '0')}"
+    val dollars = cents / CENTS_PER_DOLLAR
+    val remainder = (cents % CENTS_PER_DOLLAR).toString().padStart(2, '0')
+    return "$sign\$$dollars.$remainder"
 }
