@@ -7,6 +7,8 @@
 
 BUNDLE_ID = nz.co.warehouseandroidtest.kmp
 
+DEEPLINK_SCHEME = nz.co.thewarehousegroup.app.kmp
+
 CAMERA_USAGE_DESCRIPTION = This app requires camera access to scan product QR codes.
 PHOTO_LIBRARY_USAGE_DESCRIPTION = This app requires access to the photo library to pick images containing barcodes.
 

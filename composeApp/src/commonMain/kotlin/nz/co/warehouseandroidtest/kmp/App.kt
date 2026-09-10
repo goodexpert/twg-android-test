@@ -2,6 +2,7 @@ package nz.co.warehouseandroidtest.kmp
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -10,6 +11,7 @@ import coil3.ImageLoader
 import coil3.compose.setSingletonImageLoaderFactory
 import coil3.network.ktor3.KtorNetworkFetcherFactory
 import coil3.request.crossfade
+import nz.co.warehouseandroidtest.kmp.deeplink.parseDeepLink
 import nz.co.warehouseandroidtest.kmp.feature.home.HomeScreen
 import nz.co.warehouseandroidtest.kmp.feature.productdetails.ProductDetailsScreen
 import nz.co.warehouseandroidtest.kmp.feature.productlist.ProductListScreen
@@ -41,6 +43,17 @@ fun App(container: AppContainer) {
     }
 
     val navController = rememberNavController()
+
+    // Drain platform-provided deep link URIs and push each parsed route onto the back stack.
+    // Cold-start URIs pushed before this composable mounts are still delivered — the handler
+    // buffers them in a channel and hands each out exactly once, so recompositions do not
+    // re-dispatch. `parseDeepLink` is the single authority on which hosts are supported: the
+    // Android intent filter only pins the scheme, so unknown hosts arrive here and are dropped.
+    LaunchedEffect(Unit) {
+        container.deepLinkHandler.uris.collect { uri ->
+            parseDeepLink(uri)?.let { route -> navController.navigate(route) }
+        }
+    }
 
     // Coil's image loader, set up once for the whole app.
     //
