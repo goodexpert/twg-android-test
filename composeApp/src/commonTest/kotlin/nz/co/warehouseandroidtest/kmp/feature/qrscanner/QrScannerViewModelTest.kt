@@ -1,6 +1,7 @@
 package nz.co.warehouseandroidtest.kmp.feature.qrscanner
 
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.take
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -20,8 +21,15 @@ class QrScannerViewModelTest {
 
         viewModel.onIntent(QrScannerIntent.CodeScanned("9400000000001"))
 
-        val effect = viewModel.effects.first()
-        assertEquals(QrScannerEffect.OpenProductDetails("9400000000001"), effect)
+        // A successful scan emits a debug toast with the raw payload before the navigation
+        // effect. The toast carries the untrimmed value; the navigation carries the id.
+        assertEquals(
+            listOf(
+                QrScannerEffect.ShowToast("9400000000001"),
+                QrScannerEffect.OpenProductDetails("9400000000001"),
+            ),
+            viewModel.effects.take(2).toList(),
+        )
     }
 
     @Test
@@ -33,8 +41,11 @@ class QrScannerViewModelTest {
         viewModel.onIntent(QrScannerIntent.CodeScanned("  9400000000001\n"))
 
         assertEquals(
-            QrScannerEffect.OpenProductDetails("9400000000001"),
-            viewModel.effects.first(),
+            listOf(
+                QrScannerEffect.ShowToast("  9400000000001\n"),
+                QrScannerEffect.OpenProductDetails("9400000000001"),
+            ),
+            viewModel.effects.take(2).toList(),
         )
     }
 
@@ -57,18 +68,38 @@ class QrScannerViewModelTest {
         viewModel.onIntent(QrScannerIntent.CodeScanned("second"))
 
         assertTrue(viewModel.state.value.isHandlingResult)
-        assertEquals(QrScannerEffect.OpenProductDetails("first"), viewModel.effects.first())
+        // Only the first scan's toast + navigation come through; the second scan is dropped
+        // because the gate closed after the first one.
+        assertEquals(
+            listOf(
+                QrScannerEffect.ShowToast("first"),
+                QrScannerEffect.OpenProductDetails("first"),
+            ),
+            viewModel.effects.take(2).toList(),
+        )
     }
 
     @Test
     fun scansAgainAfterTheScreenComesBack() = runTest {
         val viewModel = QrScannerViewModel()
         viewModel.onIntent(QrScannerIntent.CodeScanned("first"))
-        assertEquals(QrScannerEffect.OpenProductDetails("first"), viewModel.effects.first())
+        assertEquals(
+            listOf(
+                QrScannerEffect.ShowToast("first"),
+                QrScannerEffect.OpenProductDetails("first"),
+            ),
+            viewModel.effects.take(2).toList(),
+        )
 
         viewModel.onIntent(QrScannerIntent.ScanningResumed)
         viewModel.onIntent(QrScannerIntent.CodeScanned("second"))
 
-        assertEquals(QrScannerEffect.OpenProductDetails("second"), viewModel.effects.first())
+        assertEquals(
+            listOf(
+                QrScannerEffect.ShowToast("second"),
+                QrScannerEffect.OpenProductDetails("second"),
+            ),
+            viewModel.effects.take(2).toList(),
+        )
     }
 }

@@ -28,6 +28,10 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>$(CAMERA_USAGE_DESCRIPTION)</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PHOTO_LIBRARY_USAGE_DESCRIPTION)</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
