@@ -1,8 +1,8 @@
 package nz.co.warehouseandroidtest.kmp
 
 import android.app.Application
-import qrgenerator.AppContext
 import nz.co.warehouseandroidtest.kmp.storage.initPlatformStorage
+import qrgenerator.AppContext
 
 /**
  * Two jobs, both of which have to happen once per process.

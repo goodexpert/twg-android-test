@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.detekt)
 }
 
 // Azure APIM subscription key, resolved the same way :app resolves it — local.properties
@@ -214,4 +215,45 @@ android {
 
 dependencies {
     debugImplementation(compose.uiTooling)
+
+    // Loaded as an extra ruleset by the detekt plugin; the artifact itself is not on any
+    // compilation classpath.
+    detektPlugins(libs.detekt.formatting)
+}
+
+// Static analysis. Scans every KMP source set — the plugin's default `source` picks up
+// androidMain and androidTest via the AGP integration, but the multiplatform source sets
+// have to be listed explicitly.
+detekt {
+    buildUponDefaultConfig = true
+    allRules = false
+    autoCorrect = false
+    parallel = true
+    config.setFrom(files("$rootDir/config/detekt/detekt.yml"))
+    baseline = file("$rootDir/config/detekt/baseline.xml")
+    source.setFrom(
+        files(
+            "src/commonMain/kotlin",
+            "src/commonTest/kotlin",
+            "src/androidMain/kotlin",
+            "src/iosMain/kotlin",
+        ),
+    )
+}
+
+tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
+    jvmTarget = JavaVersion.VERSION_17.toString()
+    reports {
+        html.required.set(true)
+        xml.required.set(true)
+        sarif.required.set(false)
+        md.required.set(false)
+    }
+    // Common/iOS source sets need `.klib` targets available; skipping them keeps the run to
+    // JVM-parsed analysis, which is what detekt actually supports today.
+    exclude("**/build/**", "**/generated/**")
+}
+
+tasks.withType<io.gitlab.arturbosch.detekt.DetektCreateBaselineTask>().configureEach {
+    jvmTarget = JavaVersion.VERSION_17.toString()
 }

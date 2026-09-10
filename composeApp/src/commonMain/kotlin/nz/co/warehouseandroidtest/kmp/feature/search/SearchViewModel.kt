@@ -1,7 +1,7 @@
 package nz.co.warehouseandroidtest.kmp.feature.search
 
-import nz.co.warehouseandroidtest.kmp.ui.BaseViewModel
 import nz.co.warehouseandroidtest.kmp.search.RecentSearchStore
+import nz.co.warehouseandroidtest.kmp.ui.BaseViewModel
 
 /**
  * Named [store] rather than `recentSearches`: inside `setState { copy(...) }` the receiver is

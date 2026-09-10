@@ -19,10 +19,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
-import androidx.core.content.edit
 
 @Composable
 actual fun rememberPermissionManager(

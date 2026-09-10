@@ -6,12 +6,12 @@ import nz.co.warehouseandroidtest.kmp.network.KtorWarehouseApi
 import nz.co.warehouseandroidtest.kmp.network.WarehouseApi
 import nz.co.warehouseandroidtest.kmp.network.createWarehouseHttpClient
 import nz.co.warehouseandroidtest.kmp.product.ProductRepository
+import nz.co.warehouseandroidtest.kmp.search.RecentSearchStore
 import nz.co.warehouseandroidtest.kmp.search.SearchRepository
 import nz.co.warehouseandroidtest.kmp.session.SessionRepository
 import nz.co.warehouseandroidtest.kmp.session.SessionStore
 import nz.co.warehouseandroidtest.kmp.session.createSecureSettings
 import nz.co.warehouseandroidtest.kmp.storage.createSettings
-import nz.co.warehouseandroidtest.kmp.search.RecentSearchStore
 
 /**
  * Holds everything whose lifetime is the whole process, and is the single place that knows how

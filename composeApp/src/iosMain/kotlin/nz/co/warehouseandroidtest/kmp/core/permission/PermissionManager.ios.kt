@@ -109,8 +109,11 @@ private fun requestIosPermission(
                     // iOS never re-prompts once the user has answered, so a "no" here is
                     // effectively permanent — Settings is the only way back.
                     onResult(
-                        if (granted) PermissionStatus.GRANTED
-                        else PermissionStatus.PERMANENTLY_DENIED,
+                        if (granted) {
+                            PermissionStatus.GRANTED
+                        } else {
+                            PermissionStatus.PERMANENTLY_DENIED
+                        },
                     )
                 }
             }

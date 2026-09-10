@@ -1,0 +1,68 @@
+# Project-specific detekt overrides. Everything else comes from the packaged defaults
+# (buildUponDefaultConfig = true in composeApp/build.gradle.kts).
+#
+# Regenerate the full default file at any time with `./gradlew :composeApp:detektGenerateConfig`,
+# then diff against this one to see what the packaged defaults look like.
+
+build:
+  # Any failing rule fails the build; the acceptance threshold lives in the baseline.
+  maxIssues: 0
+
+console-reports:
+  active: true
+  exclude:
+    - 'ProjectStatisticsReport'
+    - 'NotificationReport'
+
+# ktlint-derived rules loaded via detekt-formatting (see composeApp/build.gradle.kts).
+formatting:
+  active: true
+  android: true
+  autoCorrect: false
+
+complexity:
+  LongMethod:
+    # Compose screen composables assemble their Scaffold, TopAppBar and content inline; the
+    # default of 60 flags every screen the app has.
+    threshold: 100
+  LongParameterList:
+    # Compose composables and route builders routinely take many callbacks; the default of 6
+    # would flag most screens without adding signal.
+    functionThreshold: 8
+    constructorThreshold: 8
+  TooManyFunctions:
+    # A ViewModel + its Contract + its Screen together push past the default 11 quickly.
+    active: false
+
+style:
+  MagicNumber:
+    # Layout dp values and animation durations are inline on purpose; extracting each to a
+    # constant would hurt readability more than it helps. Values are strings in this config
+    # by design — detekt parses them back to numbers itself.
+    ignoreNumbers:
+      - '-1'
+      - '0'
+      - '1'
+      - '2'
+    ignoreCompanionObjectPropertyDeclaration: true
+    ignoreEnums: true
+    ignoreConstantDeclaration: true
+    ignoreHashCodeFunction: true
+    ignorePropertyDeclaration: true
+  MaxLineLength:
+    maxLineLength: 120
+  ReturnCount:
+    # 4 permits [PermissionManager.android.kt#getPermissionStatus] and similar guard-heavy
+    # helpers that early-return per branch without an obvious win from restructuring.
+    max: 4
+  UnusedPrivateMember:
+    # Compose previews and iOS actuals often show up as "unused" from detekt's perspective.
+    ignoreAnnotated:
+      - 'Preview'
+      - 'Composable'
+
+naming:
+  FunctionNaming:
+    # Compose composables use PascalCase by convention.
+    ignoreAnnotated:
+      - 'Composable'
