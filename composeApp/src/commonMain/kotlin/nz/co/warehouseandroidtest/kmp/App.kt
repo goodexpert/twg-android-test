@@ -80,7 +80,7 @@ fun App(container: AppContainer) {
 
             composable<QrScannerRoute> {
                 QrScannerScreen(
-                    onOpenProductDetails = { navController.navigate(ProductDetailsRoute(it)) },
+                    onNavigate = { route -> navController.navigate(route) },
                     onBack = navController::navigateUp,
                 )
             }

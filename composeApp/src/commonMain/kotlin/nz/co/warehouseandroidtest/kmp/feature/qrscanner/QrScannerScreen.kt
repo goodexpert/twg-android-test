@@ -52,7 +52,7 @@ import qrscanner.QrScanner
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun QrScannerScreen(
-    onOpenProductDetails: (String) -> Unit,
+    onNavigate: (Any) -> Unit,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -75,7 +75,7 @@ fun QrScannerScreen(
     LaunchedEffect(viewModel) {
         viewModel.effects.collect { effect ->
             when (effect) {
-                is QrScannerEffect.OpenProductDetails -> onOpenProductDetails(effect.productId)
+                is QrScannerEffect.OpenRoute -> onNavigate(effect.route)
                 is QrScannerEffect.ShowToast -> {
                     snackbarHostState.showSnackbar(effect.message)
                 }

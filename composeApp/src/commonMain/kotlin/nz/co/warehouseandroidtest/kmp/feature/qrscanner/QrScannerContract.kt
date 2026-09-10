@@ -35,9 +35,11 @@ sealed interface QrScannerIntent : UiIntent {
 sealed interface QrScannerEffect : UiEffect {
     /**
      * Emitted only for a payload the view model accepted, so the screen never navigates on a
-     * blank scan or on a repeat of the code it is already acting on.
+     * blank scan or on a repeat of the code it is already acting on. [route] is one of the
+     * typed destinations from `ui/Routes.kt` and is handed straight to `NavController.navigate`
+     * — parsing which route to open is the view model's job, not the screen's.
      */
-    data class OpenProductDetails(val productId: String) : QrScannerEffect
+    data class OpenRoute(val route: Any) : QrScannerEffect
 
     /**
      * Requests a transient snackbar be shown. Used both for reader errors coming through
