@@ -1,6 +1,7 @@
 package nz.co.warehouseandroidtest.kmp.feature.productlist
 
 import nz.co.warehouseandroidtest.kmp.data.ErrorState
+import nz.co.warehouseandroidtest.kmp.ui.UiEffect
 import nz.co.warehouseandroidtest.kmp.ui.UiIntent
 import nz.co.warehouseandroidtest.kmp.ui.UiState
 
@@ -75,4 +76,12 @@ sealed interface ProductListIntent : UiIntent {
 
     /** Switch between grid and list. Driven from the toggle on the product-count row. */
     data class LayoutChanged(val layout: ProductListLayout) : ProductListIntent
+
+    /** A card in the list or grid was tapped. Carries the id the details route needs. */
+    data class OnCardClicked(val productId: String) : ProductListIntent
+}
+
+sealed interface ProductListEffect : UiEffect {
+    /** Navigate to the product details screen for [productId]. */
+    data class OpenProductDetails(val productId: String) : ProductListEffect
 }

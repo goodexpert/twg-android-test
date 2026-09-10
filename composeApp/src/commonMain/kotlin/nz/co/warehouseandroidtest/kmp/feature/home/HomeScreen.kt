@@ -32,12 +32,13 @@ import nz.co.warehouseandroidtest.kmp.currentPlatform
 private const val LOGIN_FAILED_MESSAGE = "Get User failed!"
 
 /**
- * The two destinations mirror the legacy `MainActivity`. Scanning stays disabled until the
- * barcode reader is ported.
+ * The two destinations mirror the legacy `MainActivity`. The scanner screen opens, but decodes
+ * nothing until the barcode reader is ported.
  */
 @Composable
 fun HomeScreen(
     container: AppContainer,
+    onOpenScanner: () -> Unit,
     onOpenSearch: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -81,8 +82,7 @@ fun HomeScreen(
                 style = MaterialTheme.typography.bodyMedium,
             )
             Button(
-                onClick = {},
-                enabled = false,
+                onClick = onOpenScanner,
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 Text("Scan barcode")
@@ -94,7 +94,7 @@ fun HomeScreen(
                 Text("Search")
             }
             Text(
-                text = "Scanning is a placeholder until the barcode reader is ported.",
+                text = "The scanner has no camera yet; it simulates a scan instead.",
                 style = MaterialTheme.typography.bodySmall,
                 textAlign = TextAlign.Center,
             )

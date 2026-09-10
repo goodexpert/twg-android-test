@@ -38,7 +38,7 @@ class SearchViewModel(
         if (trimmed.isEmpty()) return
 
         val updated = store.add(trimmed)
-        setState { copy(query = trimmed, recentSearches = updated) }
+        setState { copy(query = "", recentSearches = updated) }
         sendEffect(SearchEffect.OpenProductList(trimmed))
     }
 }

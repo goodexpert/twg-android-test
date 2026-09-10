@@ -21,5 +21,9 @@
 
     <string name="action_try_again">Try Again</string>
 
+    <string name="product_descriptions_title">Product Descriptions</string>
+    <string name="product_details_title">Product Details</string>
+    <string name="product_features_title">Product Features</string>
+
     <string name="search_title">Search</string>
 </resources>

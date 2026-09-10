@@ -2,6 +2,7 @@ package nz.co.warehouseandroidtest.kmp.feature.productlist
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,7 +22,6 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -63,7 +63,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -73,6 +72,8 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filter
 import nz.co.warehouseandroidtest.kmp.AppContainer
 import nz.co.warehouseandroidtest.kmp.ui.components.ErrorContent
+import nz.co.warehouseandroidtest.kmp.ui.components.PriceInfoDisplay
+import nz.co.warehouseandroidtest.kmp.ui.components.ProductNameLine
 import nz.co.warehouseandroidtest.kmp.ui.components.buildSpan
 import nz.co.warehouseandroidtest.kmp.ui.components.computeRowIds
 import nz.co.warehouseandroidtest.kmp.ui.components.equalHeightByRow
@@ -94,6 +95,7 @@ import twg_android_test.composeapp.generated.resources.search_title
 fun ProductListScreen(
     container: AppContainer,
     query: String,
+    onOpenProductDetails: (String) -> Unit,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -105,6 +107,18 @@ fun ProductListScreen(
         )
     }
     val state by viewModel.state.collectAsState()
+
+    val onCardClick = { productId: String ->
+        viewModel.onIntent(ProductListIntent.OnCardClicked(productId))
+    }
+
+    LaunchedEffect(viewModel) {
+        viewModel.effects.collect { effect ->
+            when (effect) {
+                is ProductListEffect.OpenProductDetails -> onOpenProductDetails(effect.productId)
+            }
+        }
+    }
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -184,6 +198,7 @@ fun ProductListScreen(
                             isLoadingMore = state.isLoading,
                             loadMoreError = state.error != null,
                             canLoadMore = state.canLoadMore,
+                            onCardClick = onCardClick,
                             onLoadMore = { viewModel.onIntent(ProductListIntent.LoadMore) },
                         )
 
@@ -192,6 +207,7 @@ fun ProductListScreen(
                             isLoadingMore = state.isLoading,
                             loadMoreError = state.error != null,
                             canLoadMore = state.canLoadMore,
+                            onCardClick = onCardClick,
                             onLoadMore = { viewModel.onIntent(ProductListIntent.LoadMore) },
                         )
                     }
@@ -398,13 +414,14 @@ private fun ProductList(
     isLoadingMore: Boolean,
     loadMoreError: Boolean,
     canLoadMore: Boolean,
+    onCardClick: (String) -> Unit,
     onLoadMore: () -> Unit,
 ) {
     val listState = rememberLazyListState()
 
     LazyColumn(state = listState, modifier = Modifier.fillMaxSize()) {
         items(items = items, key = { it.id }) { item ->
-            ProductListItem(item = item)
+            ProductListItem(item = item, onClick = { onCardClick(item.id) })
             HorizontalDivider(color = DividerGrey)
         }
         pagingFooter(
@@ -428,6 +445,7 @@ private fun ProductGrid(
     isLoadingMore: Boolean,
     loadMoreError: Boolean,
     canLoadMore: Boolean,
+    onCardClick: (String) -> Unit,
     onLoadMore: () -> Unit,
 ) {
     val gridState = rememberLazyGridState()
@@ -454,6 +472,7 @@ private fun ProductGrid(
                 modifier = Modifier
                     .gridCellDividers()
                     .equalHeightByRow(equalHeightByRowState, rowId),
+                onClick = { onCardClick(item.id) },
             )
         }
 
@@ -551,10 +570,15 @@ private fun LoadMoreErrorFooter(onRetry: () -> Unit) {
 private const val PAGE_PREFETCH_THRESHOLD = 3
 
 @Composable
-private fun ProductListItem(item: ProductCardData) {
+private fun ProductListItem(
+    item: ProductCardData,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
+            .clickable(onClick = onClick)
             .padding(horizontal = 12.dp, vertical = 12.dp),
     ) {
         ProductThumbnail(
@@ -567,7 +591,10 @@ private fun ProductListItem(item: ProductCardData) {
                 SavingTag(text = item.savingLabel)
                 Spacer(Modifier.height(6.dp))
             }
-            ProductNameLine(item = item)
+            ProductNameLine(
+                name = item.name,
+                isPromoted = item.isPromoted,
+            )
             Spacer(Modifier.height(4.dp))
             PriceInfoDisplay(price = item.price, unitPrice = item.unitPrice)
             if (item.wasPrice != null) {
@@ -581,7 +608,10 @@ private fun ProductListItem(item: ProductCardData) {
             }
             Spacer(Modifier.height(8.dp))
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                ViewButton(modifier = Modifier.weight(1f))
+                ViewButton(
+                    onClick = onClick,
+                    modifier = Modifier.weight(1f),
+                )
             }
         }
     }
@@ -590,11 +620,13 @@ private fun ProductListItem(item: ProductCardData) {
 @Composable
 private fun ProductGridItem(
     item: ProductCardData,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier
             .fillMaxWidth()
+            .clickable(onClick = onClick)
             .padding(horizontal = 12.dp, vertical = 12.dp),
     ) {
         if (item.savingLabel != null) {
@@ -608,7 +640,12 @@ private fun ProductGridItem(
                 .aspectRatio(1f),
         )
         Spacer(Modifier.height(8.dp))
-        ProductNameLine(item = item, minLines = 2, maxLines = 3)
+        ProductNameLine(
+            name = item.name,
+            isPromoted = item.isPromoted,
+            minLines = 2,
+            maxLines = 3,
+        )
         Spacer(Modifier.height(6.dp))
         PriceInfoDisplay(price = item.price)
 
@@ -629,7 +666,10 @@ private fun ProductGridItem(
             )
         }
         Spacer(Modifier.weight(1f))
-        ViewButton(modifier = Modifier.fillMaxWidth())
+        ViewButton(
+            onClick = onClick,
+            modifier = Modifier.fillMaxWidth(),
+        )
     }
 }
 
@@ -681,36 +721,6 @@ private fun ProductThumbnail(item: ProductCardData, modifier: Modifier = Modifie
 }
 
 @Composable
-private fun ProductNameLine(
-    item: ProductCardData,
-    minLines: Int = 1,
-    maxLines: Int = 2,
-) {
-    Row(verticalAlignment = Alignment.Top) {
-        if (item.isPromoted) {
-            Text(
-                text = "Promoted",
-                fontSize = 12.sp,
-                color = Color.DarkGray,
-                modifier = Modifier
-                    .clip(RoundedCornerShape(4.dp))
-                    .background(PromotedGrey)
-                    .padding(horizontal = 6.dp, vertical = 2.dp),
-            )
-            Spacer(Modifier.width(6.dp))
-        }
-        Text(
-            text = item.name,
-            style = MaterialTheme.typography.bodyMedium,
-            fontWeight = FontWeight.SemiBold,
-            minLines = minLines,
-            maxLines = maxLines,
-            overflow = TextOverflow.Ellipsis,
-        )
-    }
-}
-
-@Composable
 private fun SavingTag(text: String) {
     Text(
         text = text,
@@ -725,49 +735,12 @@ private fun SavingTag(text: String) {
 }
 
 @Composable
-private fun PriceInfoDisplay(
-    price: String,
-    unitPrice: String? = null,
+private fun ViewButton(
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val (dollars, cents) = splitPrice(price)
-    Row(modifier = modifier, verticalAlignment = Alignment.Top) {
-        Text(
-            text = dollars,
-            fontSize = 30.sp,
-            fontWeight = FontWeight.Black,
-            color = Color.Black,
-        )
-        if (cents.isNotEmpty()) {
-            Text(
-                text = cents,
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Black,
-                color = Color.Black,
-            )
-        }
-        if (unitPrice != null) {
-            Spacer(Modifier.width(8.dp))
-            Text(
-                text = unitPrice,
-                color = SubtleText,
-                fontSize = 12.sp,
-                modifier = Modifier.align(Alignment.Bottom),
-            )
-        }
-    }
-}
-
-/** "$4.95" -> ("$4", "95"); "$29" -> ("$29", ""). Superscript cents rendered by the caller. */
-private fun splitPrice(price: String): Pair<String, String> {
-    val dot = price.indexOf('.')
-    return if (dot < 0) price to "" else price.substring(0, dot) to price.substring(dot + 1)
-}
-
-@Composable
-private fun ViewButton(modifier: Modifier = Modifier) {
     Button(
-        onClick = { /* add to cart */ },
+        onClick = onClick,
         modifier = modifier,
         colors = ButtonDefaults.buttonColors(
             containerColor = TwgGreen,
@@ -818,7 +791,6 @@ private val TwgGreen = Color(0xFF008036)
 private val FilterDot = Color(0xFFD91E7A)
 private val SavingsYellow = Color(0xFFFFDA47)
 private val WasRed = Color(0xFFD1231A)
-private val PromotedGrey = Color(0xFFE1E1E1)
 private val DividerGrey = Color(0xFFEAEAEA)
 private val ImagePlaceholder = Color(0xFFF3F3F3)
 private val SkeletonGrey = Color(0xFFEDEDED)

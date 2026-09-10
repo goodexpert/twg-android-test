@@ -13,8 +13,19 @@ import kotlinx.serialization.Serializable
 data object HomeRoute
 
 @Serializable
+data object QrScannerRoute
+
+@Serializable
 data object SearchRoute
 
 /** [query] is what the search screen submitted, carried as part of the destination. */
 @Serializable
 data class ProductListRoute(val query: String)
+
+/**
+ * [productId] is whatever the scan decoded. The legacy app called the same value `barCode` and
+ * sent it to `Product.json` as the `BarCode` query parameter, so the request builder will have
+ * to map the name back when `getProductDetail` is ported.
+ */
+@Serializable
+data class ProductDetailsRoute(val productId: String)

@@ -9,11 +9,16 @@ import androidx.navigation.toRoute
 import coil3.ImageLoader
 import coil3.compose.setSingletonImageLoaderFactory
 import coil3.network.ktor3.KtorNetworkFetcherFactory
+import coil3.request.crossfade
 import nz.co.warehouseandroidtest.kmp.feature.home.HomeScreen
+import nz.co.warehouseandroidtest.kmp.feature.productdetails.ProductDetailsScreen
 import nz.co.warehouseandroidtest.kmp.feature.productlist.ProductListScreen
+import nz.co.warehouseandroidtest.kmp.feature.qrscanner.QrScannerScreen
 import nz.co.warehouseandroidtest.kmp.feature.search.SearchScreen
 import nz.co.warehouseandroidtest.kmp.ui.HomeRoute
+import nz.co.warehouseandroidtest.kmp.ui.ProductDetailsRoute
 import nz.co.warehouseandroidtest.kmp.ui.ProductListRoute
+import nz.co.warehouseandroidtest.kmp.ui.QrScannerRoute
 import nz.co.warehouseandroidtest.kmp.ui.SearchRoute
 
 /**
@@ -37,12 +42,33 @@ fun App(container: AppContainer) {
 
     val navController = rememberNavController()
 
+    // Coil's image loader, set up once for the whole app.
+    //
+    // Its own HttpClient on purpose. The one behind WarehouseApi puts the APIM base URL and the
+    // subscription key on every request it makes; product images are served from
+    // office-supplies.co.nz, so reusing it would send the key to a host that has no business
+    // with it.
+    setSingletonImageLoaderFactory { context ->
+        ImageLoader.Builder(context)
+            .components { add(KtorNetworkFetcherFactory()) }
+            .crossfade(true)
+            .build()
+    }
+
     MaterialTheme {
         NavHost(navController = navController, startDestination = HomeRoute) {
             composable<HomeRoute> {
                 HomeScreen(
                     container = container,
+                    onOpenScanner = { navController.navigate(QrScannerRoute) },
                     onOpenSearch = { navController.navigate(SearchRoute) },
+                )
+            }
+
+            composable<QrScannerRoute> {
+                QrScannerScreen(
+                    onOpenProductDetails = { navController.navigate(ProductDetailsRoute(it)) },
+                    onBack = navController::navigateUp,
                 )
             }
 
@@ -60,6 +86,16 @@ fun App(container: AppContainer) {
                 ProductListScreen(
                     container = container,
                     query = route.query,
+                    onOpenProductDetails = { navController.navigate(ProductDetailsRoute(it)) },
+                    onBack = navController::navigateUp,
+                )
+            }
+
+            composable<ProductDetailsRoute> { entry ->
+                val route = entry.toRoute<ProductDetailsRoute>()
+                ProductDetailsScreen(
+                    container = container,
+                    productId = route.productId,
                     onBack = navController::navigateUp,
                 )
             }
