@@ -1,19 +1,24 @@
 package nz.co.warehouseandroidtest.kmp.feature.qrscanner
 
+import nz.co.warehouseandroidtest.kmp.deeplink.DEEP_LINK_SCHEME
+import nz.co.warehouseandroidtest.kmp.deeplink.parseDeepLink
 import nz.co.warehouseandroidtest.kmp.ui.BaseViewModel
+import nz.co.warehouseandroidtest.kmp.ui.ProductDetailsRoute
 
 /**
- * Turns decoded payloads into a single navigation to the details screen.
+ * Turns decoded payloads into a single typed navigation.
  *
  * Two payload shapes are accepted, in this order:
- *   1. A `productDetails` deep link (`$DEEP_LINK_PREFIX?productId=<id>`) — the id is pulled
- *      out and used. This is what a QR code produced by another install of the app looks
- *      like, and it lets a shared code round-trip through the scanner.
- *   2. Anything else — used as the product id directly, matching the legacy barcode reader.
+ *   1. A URI on our own scheme (`$DEEP_LINK_SCHEME://…`) — handed to `parseDeepLink`, which
+ *      is the same gate the platform intent bridges use. This is what a QR code produced by
+ *      another install of the app looks like, and it lets a shared link round-trip through
+ *      the scanner without the scanner knowing which hosts are supported.
+ *   2. Anything else — treated as a bare product id, matching the legacy barcode reader.
  *
  * Reader errors arrive through [QrScannerIntent.ScanFailed] and are surfaced as a snackbar
- * via [QrScannerEffect.ShowToast] rather than crashing the screen. A payload that parses as
- * a deep link but carries no `productId` is treated as invalid and produces the same toast.
+ * via [QrScannerEffect.ShowToast] rather than crashing the screen. A payload that looks like
+ * one of our URIs but fails to parse (unknown host, missing required parameter) produces
+ * the same toast.
  */
 class QrScannerViewModel :
     BaseViewModel<QrScannerUiState, QrScannerIntent, QrScannerEffect>(QrScannerUiState()) {
@@ -38,27 +43,19 @@ class QrScannerViewModel :
         val rawValue = value.trim()
         if (rawValue.isEmpty()) return
 
-        // A payload can arrive as either the bare product id (legacy barcodes) or as one of
-        // our own share URLs. Only the latter needs unwrapping; anything else is passed
-        // through, so a valid barcode still routes even if the scheme changes later.
-        val productId = if (rawValue.startsWith(DEEP_LINK_PREFIX)) {
-            rawValue.substringAfter(PARAM_PRODUCT_ID, "").trim()
+        val route = if (rawValue.startsWith("$DEEP_LINK_SCHEME://")) {
+            parseDeepLink(rawValue)
         } else {
-            rawValue
+            ProductDetailsRoute(rawValue)
         }
 
-        if (productId.isEmpty()) {
+        if (route == null) {
             sendEffect(QrScannerEffect.ShowToast("Invalid QR payload"))
             return
         }
 
         setState { copy(isHandlingResult = true) }
         sendEffect(QrScannerEffect.ShowToast(value))
-        sendEffect(QrScannerEffect.OpenProductDetails(productId))
-    }
-
-    private companion object {
-        const val DEEP_LINK_PREFIX = "nz.co.thewarehousegroup.app.kmp://productDetails"
-        const val PARAM_PRODUCT_ID = "productId="
+        sendEffect(QrScannerEffect.OpenRoute(route))
     }
 }

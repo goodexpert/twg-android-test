@@ -1,6 +1,7 @@
 package nz.co.warehouseandroidtest.kmp
 
 import io.ktor.client.HttpClient
+import nz.co.warehouseandroidtest.kmp.deeplink.DeepLinkHandler
 import nz.co.warehouseandroidtest.kmp.feature.productlist.ProductListPreferencesStore
 import nz.co.warehouseandroidtest.kmp.network.KtorWarehouseApi
 import nz.co.warehouseandroidtest.kmp.network.WarehouseApi
@@ -60,6 +61,12 @@ class AppContainer {
     val productListPreferencesStore: ProductListPreferencesStore by lazy {
         ProductListPreferencesStore(createSettings(PRODUCT_LIST_PREFS_STORE))
     }
+
+    /**
+     * Receives deep link URIs from the platform intent bridges. Eager rather than lazy so the
+     * platform side can push cold-start URIs before anything on the Compose side has read it.
+     */
+    val deepLinkHandler: DeepLinkHandler = DeepLinkHandler()
 
     private companion object {
         const val RECENT_SEARCHES_STORE = "warehouse_recent_searches"

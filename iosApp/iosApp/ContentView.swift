@@ -19,5 +19,11 @@ struct ContentView: View {
         // Scaffold then applied again — the doubled top padding seen on iOS.
         ComposeView()
             .ignoresSafeArea()
+            // Both cold-start and warm-open URLs land here. The Kotlin side buffers the URI
+            // until App's LaunchedEffect starts collecting, so a URL that arrives before the
+            // Compose hierarchy is ready is still delivered exactly once.
+            .onOpenURL { url in
+                MainViewControllerKt.handleIosDeepLink(url: url.absoluteString)
+            }
     }
 }
