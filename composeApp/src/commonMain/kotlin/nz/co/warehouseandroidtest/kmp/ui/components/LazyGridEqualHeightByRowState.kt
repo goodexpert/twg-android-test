@@ -19,11 +19,27 @@ import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.unit.Constraints
 import kotlin.math.max
 
+/**
+ * Per-row max-height cache for [equalHeightByRow]: `rowId -> pixels`, where the value is the
+ * tallest measurement any cell in that row has produced so far.
+ *
+ * A snapshot state map, so a measurement that pushes a row's max up recomposes the earlier,
+ * shorter cells and lets them grow to match. Callers do not read this directly — hand it to
+ * [equalHeightByRow] and let the modifier do the bookkeeping.
+ */
 @Stable
 class LazyGridEqualHeightByRowState {
     val groupMaxHeightsPx = mutableStateMapOf<Int, Int>()
 }
 
+/**
+ * Remembers a [LazyGridEqualHeightByRowState] and clears its cache when the previous
+ * measurements would be wrong to reuse — the window size changed (rotation, split-screen), the
+ * density or font scale changed (system settings), or [layoutKey] changed.
+ *
+ * [layoutKey] is the escape hatch for a page swap: pass the list the grid renders, so items
+ * with different intrinsic heights do not inherit the previous page's row heights.
+ */
 @Composable
 fun rememberEqualHeightByRowState(
     layoutKey: Any? = null,
@@ -43,6 +59,17 @@ fun rememberEqualHeightByRowState(
     return state
 }
 
+/**
+ * Forces this cell to match the tallest measurement seen for [rowId], via [state]. This is
+ * what makes a two-column grid where one product name wraps to three lines and another to one
+ * still draw with a straight bottom edge across the row — otherwise per-cell backgrounds and
+ * dividers would zigzag.
+ *
+ * Measured in two passes: first with loose height constraints to learn the natural size, then
+ * again at the row's running max if that number has grown. The tallest cell in a row settles
+ * on the first frame; shorter cells can flicker once as they catch up in the recomposition
+ * that follows the state map update.
+ */
 fun Modifier.equalHeightByRow(
     state: LazyGridEqualHeightByRowState,
     rowId: Int,
@@ -74,6 +101,12 @@ fun Modifier.equalHeightByRow(
     }
 })
 
+/**
+ * Walks a [spans] array and returns a parallel array of which row each item lands on. A row
+ * fills when its cell spans sum to [columns]; the next item starts the next row. Callers hand
+ * the result to [equalizedGridItems], which passes each item's row id down to
+ * [equalHeightByRow].
+ */
 fun computeRowIds(spans: IntArray, columns: Int): IntArray {
     val out = IntArray(spans.size)
     var rowId = 0
@@ -90,6 +123,11 @@ fun computeRowIds(spans: IntArray, columns: Int): IntArray {
     return out
 }
 
+/**
+ * Builds a spans array by asking [spanFor] how many columns each item wants, clamped to
+ * `1..columns` so a caller cannot ask for a cell wider than the grid or thinner than one
+ * column. Pair with [computeRowIds] to get the row bookkeeping [equalizedGridItems] expects.
+ */
 fun <T> buildSpan(
     items: List<T>,
     columns: Int,
@@ -98,6 +136,15 @@ fun <T> buildSpan(
     spanFor(i, items[i]).coerceIn(1, columns)
 }
 
+/**
+ * Emits [items] into a `LazyVerticalGrid` with the pre-computed [spans] and hands each item's
+ * row id from [rowIds] down to [itemContent], so the caller can apply [equalHeightByRow] with
+ * it.
+ *
+ * Splitting the spans/rowIds computation out of this call lets the caller `remember` it
+ * against the item list and only rebuild when the list actually changes rather than on every
+ * recomposition.
+ */
 fun <T> LazyGridScope.equalizedGridItems(
     items: List<T>,
     spans: IntArray,

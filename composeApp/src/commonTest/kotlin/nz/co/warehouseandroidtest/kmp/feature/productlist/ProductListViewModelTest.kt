@@ -4,6 +4,7 @@ import com.russhwolf.settings.MapSettings
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.resetMain
@@ -348,6 +349,18 @@ class ProductListViewModelTest {
         assertEquals(20, state.items.size)
         assertEquals(0, api.lastSearchRequest?.start)
         assertNull(state.error)
+    }
+
+    @Test
+    fun cardTapEmitsOpenProductDetailsForTheTappedId() = runTest {
+        // The screen turns the effect into a NavController.navigate — the ViewModel just has
+        // to hand the id back out. No state changes, no repository calls.
+        val vm = viewModel()
+        advanceUntilIdle()
+
+        vm.onIntent(ProductListIntent.OnCardClicked("R42"))
+
+        assertEquals(ProductListEffect.OpenProductDetails("R42"), vm.effects.first())
     }
 
     @Test

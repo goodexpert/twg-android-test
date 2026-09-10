@@ -1,15 +1,15 @@
 package nz.co.warehouseandroidtest.kmp.feature.search
 
 import com.russhwolf.settings.MapSettings
-import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withTimeoutOrNull
+import nz.co.warehouseandroidtest.kmp.search.RecentSearchStore
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
-import nz.co.warehouseandroidtest.kmp.search.RecentSearchStore
 
 class SearchViewModelTest {
 
@@ -54,14 +54,17 @@ class SearchViewModelTest {
     }
 
     @Test
-    fun submitTrimsTheTermBeforeNavigating() = runTest {
+    fun submitTrimsTheTermAndClearsTheBuffer() = runTest {
         val viewModel = viewModel()
         viewModel.onIntent(SearchIntent.QueryChanged("  drill  "))
 
         viewModel.onIntent(SearchIntent.Submit)
 
+        // The trimmed value is what the destination sees.
         assertEquals(SearchEffect.OpenProductList("drill"), viewModel.effects.first())
-        assertEquals("drill", viewModel.state.value.query)
+        // The buffer is consumed — the field is empty the next time the screen renders, so a
+        // fresh open does not show what the user already searched for.
+        assertEquals("", viewModel.state.value.query)
     }
 
     @Test
@@ -77,15 +80,18 @@ class SearchViewModelTest {
     }
 
     @Test
-    fun selectingHistorySearchesForItDirectly() = runTest {
+    fun selectingHistoryNavigatesAndClearsTheBuffer() = runTest {
         val store = RecentSearchStore(MapSettings())
         store.add("hammer")
         val viewModel = viewModel(store)
+        // Something the user was mid-typing when they reached for the history row.
+        viewModel.onIntent(SearchIntent.QueryChanged("scr"))
 
         viewModel.onIntent(SearchIntent.RecentSearchSelected("hammer"))
 
-        assertEquals("hammer", viewModel.state.value.query)
         assertEquals(SearchEffect.OpenProductList("hammer"), viewModel.effects.first())
+        // Same rule as enter: the history tap commits, and commit empties the buffer.
+        assertEquals("", viewModel.state.value.query)
     }
 
     @Test

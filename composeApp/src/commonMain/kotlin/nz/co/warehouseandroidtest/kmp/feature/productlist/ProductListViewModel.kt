@@ -22,14 +22,15 @@ import nz.co.warehouseandroidtest.kmp.ui.BaseViewModel
  * [ProductListUiState.error]. See the contract for why the initial/paging split is derived
  * rather than stored.
  *
- * `Nothing` as the effect type: this screen has no one-shot events yet, and that makes
- * `sendEffect` uncallable rather than merely unused.
+ * Card taps travel out as [ProductListEffect.OpenProductDetails]: navigation is a one-shot
+ * event that the composable's NavController owns, not screen state, so it belongs on the
+ * effect channel rather than in [ProductListUiState].
  */
 class ProductListViewModel(
     private val query: String,
     private val searchRepository: SearchRepository,
     private val preferencesStore: ProductListPreferencesStore,
-) : BaseViewModel<ProductListUiState, ProductListIntent, Nothing>(
+) : BaseViewModel<ProductListUiState, ProductListIntent, ProductListEffect>(
     // Read once at construction: the store is a plain settings read, and lifting the last
     // choice into the initial state keeps the toggle's answer consistent from the first
     // frame the screen paints.
@@ -50,6 +51,8 @@ class ProductListViewModel(
                 preferencesStore.writeLayout(intent.layout)
                 setState { copy(layout = intent.layout) }
             }
+
+            is ProductListIntent.OnCardClicked -> handleOnCardClicked(intent.productId)
         }
     }
 
@@ -125,5 +128,9 @@ class ProductListViewModel(
                     }
                 }
         }
+    }
+
+    private fun handleOnCardClicked(productId: String) {
+        sendEffect(ProductListEffect.OpenProductDetails(productId))
     }
 }
