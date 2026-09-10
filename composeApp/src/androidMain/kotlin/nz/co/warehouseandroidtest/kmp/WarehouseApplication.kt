@@ -1,6 +1,7 @@
 package nz.co.warehouseandroidtest.kmp
 
 import android.app.Application
+import qrgenerator.AppContext
 import nz.co.warehouseandroidtest.kmp.storage.initPlatformStorage
 
 /**
@@ -25,6 +26,7 @@ class WarehouseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        AppContext.apply { set(applicationContext) }
         initPlatformStorage(this)
     }
 }

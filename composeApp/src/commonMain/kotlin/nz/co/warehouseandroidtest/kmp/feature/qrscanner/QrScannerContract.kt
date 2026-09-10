@@ -8,9 +8,13 @@ import nz.co.warehouseandroidtest.kmp.ui.UiState
  * [isHandlingResult] is what keeps a decoder from opening the details screen twice. A camera
  * reader delivers the same code on every frame it stays in view, so the first accepted result
  * closes the gate until the screen re-arms it.
+ *
+ * [isFlashlightOn] mirrors the torch state the screen hands to the underlying camera preview.
+ * Kept here rather than in the reader so a configuration change does not silently drop it.
  */
 data class QrScannerUiState(
     val isHandlingResult: Boolean = false,
+    val isFlashlightOn: Boolean = false,
 ) : UiState
 
 sealed interface QrScannerIntent : UiIntent {
@@ -19,6 +23,13 @@ sealed interface QrScannerIntent : UiIntent {
 
     /** Sent when the screen comes back to the foreground, so scanning can start again. */
     data object ScanningResumed : QrScannerIntent
+
+    /**
+     * Sent by the reader when it can't decode a frame or when the camera surface itself
+     * errors out. [message] is the reader's own description and is surfaced via
+     * [QrScannerEffect.ShowToast] without further translation.
+     */
+    data class ScanFailed(val message: String) : QrScannerIntent
 }
 
 sealed interface QrScannerEffect : UiEffect {
@@ -27,4 +38,12 @@ sealed interface QrScannerEffect : UiEffect {
      * blank scan or on a repeat of the code it is already acting on.
      */
     data class OpenProductDetails(val productId: String) : QrScannerEffect
+
+    /**
+     * Requests a transient snackbar be shown. Used both for reader errors coming through
+     * [QrScannerIntent.ScanFailed] and for the view model's own validation feedback, e.g. a
+     * deep-link payload that carries no `productId`. The screen collects this into its
+     * `SnackbarHostState`.
+     */
+    data class ShowToast(val message: String) : QrScannerEffect
 }

@@ -7,6 +7,9 @@
 
 BUNDLE_ID = nz.co.warehouseandroidtest.kmp
 
+CAMERA_USAGE_DESCRIPTION = This app requires camera access to scan product QR codes.
+PHOTO_LIBRARY_USAGE_DESCRIPTION = This app requires access to the photo library to pick images containing barcodes.
+
 // Per-developer overrides, chiefly TEAM_ID. The `?` makes the include optional, so a fresh
 // clone without this file still configures: TEAM_ID resolves empty, and simulator builds
 // need no signing team. Create it only if you build to a physical device.
